@@ -1,0 +1,33 @@
+<section class="banner-carousel" (mouseenter)="stopAutoSlide()" (mouseleave)="startAutoSlide()">
+  
+  <!-- Thùng chứa toàn bộ Slide dạng cuộn ngang -->
+  <div class="slides-wrapper" [style.transform]="'translateX(-' + (currentIndex * 100) + '%)'">
+    <div *ngFor="let slide of slides" class="slide-item">
+      <div class="banner-overlay"></div>
+      <img [src]="slide.image" [alt]="slide.title" class="banner-image" />
+      
+      <!-- <div class="banner-container">
+        <div class="banner-content">
+          <span class="badge">{{ slide.badge }}</span>
+          <h1 class="title">{{ slide.title }}</h1>
+          <p class="subtitle">{{ slide.subtitle }}</p>
+          <div class="cta-group">
+            <a [href]="slide.link" class="btn btn-primary">Mua Ngay</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- 4 Chấm tròn điều hướng (Pagination Dots) -->
+  <div class="dots-container">
+    <button 
+      *ngFor="let slide of slides; let i = index" 
+      class="dot" 
+      [ngClass]="{ 'active': i === currentIndex }"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Chuyển đến slide ' + (i + 1)">
+    </button>
+  </div>
+
+</section>

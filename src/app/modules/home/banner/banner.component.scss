@@ -1,0 +1,144 @@
+$primary-color: #fff;
+$primary-hover: #fff;
+$text-white: #ffffff;
+$badge-bg: #ef4444;
+
+.banner-carousel {
+  position: relative;
+  width: 100%;
+  height: 680px;
+  overflow: hidden;
+
+  // Khung cuộn ngang
+  .slides-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); // Hiệu ứng trượt mượt
+  }
+
+  // Từng slide chiếm 100% chiều rộng
+  .slide-item {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .banner-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 1;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+    }
+
+    .banner-container {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .banner-content {
+      max-width: 580px;
+      color: $text-white;
+
+      .badge {
+        display: inline-block;
+        padding: 6px 14px;
+        background-color: $badge-bg;
+        color: $text-white;
+        font-size: 0.85rem;
+        font-weight: 600;
+        border-radius: 20px;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 16px;
+      }
+
+      .subtitle {
+        font-size: 1.125rem;
+        line-height: 1.6;
+        margin-bottom: 28px;
+        color: #e2e8f0;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        padding: 12px 28px;
+        background-color: $primary-color;
+        color: $text-white;
+        font-weight: 600;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.25s ease;
+
+        &:hover {
+          background-color: $primary-hover;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  // 4 DẤU CHẤM ĐIỀU HƯỚNG
+  .dots-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.4);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+      }
+
+      // Chấm đang chọn sẽ dài ra và sáng lên
+      &.active {
+        width: 32px;
+        border-radius: 8px;
+        background-color: $primary-color;
+      }
+    }
+  }
+
+  // Responsive Mobile
+  @media (max-width: 768px) {
+    height: 360px;
+
+    .slide-item .banner-content {
+      text-align: center;
+      .title { font-size: 1.8rem; }
+      .subtitle { font-size: 0.95rem; }
+    }
+  }
+}
