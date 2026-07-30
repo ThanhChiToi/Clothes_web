@@ -22,7 +22,7 @@ export class BannerComponent implements OnInit, OnDestroy {
     {
       id: 1,
       image: 'assets/images/logobanner.webp',
-      badge: 'Bộ Tập Mới 2026',
+      badge: 'Bộ Tập Mới',
       title: 'Thời Trang Mùa Hè Năng Động',
       subtitle: 'Giảm giá lên đến 50% cho toàn bộ bộ sưu tập mới.',
       link: '/products'
