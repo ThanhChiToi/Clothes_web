@@ -1,0 +1,1 @@
+import{La as n,Ma as a,Ra as i,V as o,Xa as r}from"./chunk-D26UWAXH.js";var p=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-product-detail"]],standalone:!0,features:[r],decls:2,vars:0,template:function(e,d){e&1&&(n(0,"p"),i(1,"product-detail works!"),a())}})};export{p as ProductDetailComponent};
