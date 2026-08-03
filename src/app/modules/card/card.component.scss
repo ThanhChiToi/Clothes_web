@@ -1,0 +1,80 @@
+$brand-primary: #1b3865;
+
+.cart-checkout-page {
+  /* Badge bước 1, 2 */
+  .step-badge {
+    width: 26px;
+    height: 26px;
+    background-color: $brand-primary;
+    font-size: 0.85rem;
+  }
+
+  /* Text & Nút bấm màu chủ đạo */
+  .text-primary-custom {
+    color: $brand-primary;
+  }
+
+  .btn-primary-custom {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    color: #ffffff;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: darken($brand-primary, 8%);
+      border-color: darken($brand-primary, 8%);
+      color: #ffffff;
+    }
+  }
+
+  /* Thẻ lựa chọn phương thức thanh toán */
+  .payment-option-card {
+    transition: all 0.2s ease;
+    border-color: #dee2e6 !important;
+
+    &:hover {
+      border-color: $brand-primary !important;
+      background-color: #f8f9fa;
+    }
+
+    &:has(input:checked) {
+      border-color: $brand-primary !important;
+      background-color: rgba(27, 56, 101, 0.04);
+    }
+  }
+
+  /* Ô tăng giảm số lượng sản phẩm mini */
+  .quantity-control {
+    width: 85px;
+    background-color: #f8f9fa;
+
+    input {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Nét đứt ngăn cách các item giỏ hàng */
+  .border-bottom-dashed {
+    border-bottom: 1px dashed #dee2e6;
+  }
+
+  .hover-danger {
+    transition: color 0.2s ease;
+    &:hover {
+      color: #dc3545 !important;
+    }
+  }
+
+  .fs-7 {
+    font-size: 0.8rem;
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .py-2-5 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+}

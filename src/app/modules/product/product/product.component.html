@@ -1,1 +1,88 @@
-<p>product works!</p>
+<div class="product-page">
+  <!-- 1. HERO BANNER -->
+  <section class="hero-banner mb-4 d-flex align-items-center justify-content-center text-center">
+    <div class="banner-overlay"></div>
+    <div class="banner-content position-relative text-white p-4">
+      <h1 class="fw-bold fs-2 fs-md-1 mb-2">{{ bannerTitle }}</h1>
+      <p class="fs-6 fs-md-5 opacity-75 mb-0">{{ bannerSubtitle }}</p>
+    </div>
+  </section>
+
+  <div class="container mb-5">
+    <!-- 2. TOP FILTER & SORT BAR -->
+    <div class="filter-bar p-3 mb-4 rounded-3 d-flex flex-wrap align-items-center justify-content-between gap-3">
+      <!-- Bộ lọc nhanh bên trái -->
+      <div class="d-flex align-items-center flex-wrap gap-2">
+        <span class="fw-semibold text-muted me-2"><i class="bi bi-funnel"></i> Lọc theo:</span>
+        
+        <select class="form-select form-select-sm filter-select">
+          <option selected>Danh mục (Tất cả)</option>
+          <option value="polo">Áo Polo</option>
+          <option value="somi">Áo Sơ Mi</option>
+          <option value="jacket">Áo Khoác</option>
+        </select>
+
+        <select class="form-select form-select-sm filter-select">
+          <option selected>Mức giá</option>
+          <option value="1">Dưới 1.000.000đ</option>
+          <option value="2">1.000.000đ - 2.000.000đ</option>
+          <option value="3">Trên 2.000.000đ</option>
+        </select>
+      </div>
+
+      <!-- Sắp xếp & Số lượng bên phải -->
+      <div class="d-flex align-items-center gap-3 ms-auto">
+        <span class="text-muted small fs-7">Hiển thị <strong>{{ products.length }}</strong> sản phẩm</span>
+        
+        <select class="form-select form-select-sm sort-select">
+          <option selected>Sắp xếp: Mới nhất</option>
+          <option value="price-asc">Giá: Thấp đến Cao</option>
+          <option value="price-desc">Giá: Cao đến Thấp</option>
+          <option value="popular">Bán chạy nhất</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 3. PRODUCT GRID -->
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4">
+      @for (product of products; track product.id) {
+        <div class="col">
+          <div class="card custom-shaped-card">
+            
+            <!-- Badge tin tức / giảm giá nếu có -->
+            @if (product.isNew) {
+              <span class="badge bg-danger position-absolute top-0 start-0 m-3 z-3">NEW</span>
+            }
+
+            <!-- Khung ảnh hiệu ứng Image Swap + Zoom -->
+            <div [routerLink]="['/products', product.id]" class="img-limit">
+              <img [src]="product.primaryImg" [alt]="product.name" class="img-primary">
+              <img [src]="product.hoverImg" [alt]="product.name + ' - Hover'" class="img-hover">
+            </div>
+
+            <!-- Thông tin sản phẩm -->
+            <div class="card-body d-flex flex-column justify-content-between p-3">
+              <div>
+                <h3 class="card-title product-title text-truncate-2 fs-6 mb-2">
+                  <a href="#" class="text-decoration-none text-dark">{{ product.name }}</a>
+                </h3>
+              </div>
+              
+              <div class="product-price-box d-flex align-items-baseline gap-2 mt-auto">
+                <span class="price-current fw-bold text-danger fs-6">
+                  {{ product.price | currency:'VND':'symbol':'1.0-0' }}
+                </span>
+                @if (product.originalPrice) {
+                  <span class="price-old text-muted text-decoration-line-through small">
+                    {{ product.originalPrice | currency:'VND':'symbol':'1.0-0' }}
+                  </span>
+                }
+              </div>
+            </div>
+
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

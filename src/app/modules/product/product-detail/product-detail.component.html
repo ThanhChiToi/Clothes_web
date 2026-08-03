@@ -1,1 +1,146 @@
-<p>product-detail works!</p>
+<div class="product-detail-page py-4 py-md-5">
+  <div class="container">
+    
+    <!-- Breadcrumb điều hướng -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Áo Polo</a></li>
+        <li class="breadcrumb-item active text-dark" aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
+
+    <div class="row g-4 g-lg-5">
+      
+      <!-- CỘT BÊN TRÁI: GALLERY ẢNH -->
+      <div class="col-lg-6">
+        <div class="gallery-wrapper d-flex flex-column-reverse flex-md-row gap-3">
+          
+          <!-- Danh sách Thumbs (Hàng ngang trên Mobile, Cột dọc trên Desktop) -->
+          <div class="thumbnail-list d-flex flex-md-column gap-2 overflow-auto">
+            @for (img of product.images; track $index) {
+              <button 
+                class="thumb-item border-0 p-0 rounded-2 overflow-hidden" 
+                [class.active]="$index === selectedImageIndex"
+                (click)="selectImage($index)">
+                <img [src]="img" [alt]="product.name" class="img-fluid">
+              </button>
+            }
+          </div>
+
+          <!-- Khung Ảnh Chính -->
+          <div class="main-image-box flex-grow-1 position-relative rounded-3 overflow-hidden bg-light">
+            <img [src]="product.images[selectedImageIndex]" [alt]="product.name" class="main-img w-100 h-100 object-fit-cover">
+            <span class="badge bg-danger position-absolute top-0 start-0 m-3 fs-7">HOT SALE</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CỘT BÊN PHẢI: THÔNG TIN & THAO TÁC -->
+      <div class="col-lg-6">
+        <div class="product-info-box ps-lg-3">
+          
+          <div class="text-muted small mb-1">Mã SP: {{ product.sku }}</div>
+          <h1 class="product-title fs-3 fw-bold mb-2">{{ product.name }}</h1>
+
+          <!-- Đánh giá Star & Review -->
+          <div class="d-flex align-items-center gap-2 mb-3 fs-7">
+            <div class="text-warning">
+              <i class="bi bi-star-fill me-1"></i>
+              <span class="fw-bold text-dark">{{ product.rating }}</span>
+            </div>
+            <span class="text-muted">|</span>
+            <span class="text-muted">{{ product.reviewCount }} Đánh giá</span>
+          </div>
+
+          <!-- Giá bán -->
+          <div class="price-box p-3 rounded-3 mb-4 d-flex align-items-baseline gap-3">
+            <span class="fs-3 fw-bold text-danger">
+              {{ product.price | currency:'VND':'symbol':'1.0-0' }}
+            </span>
+            @if (product.originalPrice) {
+              <span class="fs-6 text-muted text-decoration-line-through">
+                {{ product.originalPrice | currency:'VND':'symbol':'1.0-0' }}
+              </span>
+            }
+          </div>
+
+          <!-- Mô tả ngắn -->
+          <p class="text-muted fs-6 mb-4">{{ product.description }}</p>
+
+          <hr class="my-4 opacity-10">
+
+          <!-- Biến thể 1: Chọn Màu sắc -->
+          <div class="mb-4">
+            <label class="form-label fw-bold d-block mb-2">
+              Màu sắc: <span class="fw-normal text-muted">{{ selectedColor.name }}</span>
+            </label>
+            <div class="d-flex gap-2">
+              @for (color of product.colors; track color.name) {
+                <button 
+                  type="button" 
+                  class="color-btn rounded-circle p-1"
+                  [class.active]="selectedColor.name === color.name"
+                  (click)="selectedColor = color">
+                  <span class="color-dot d-block rounded-circle" [style.background-color]="color.hex"></span>
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- Biến thể 2: Chọn Size -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label class="form-label fw-bold mb-0">Kích thước (Size):</label>
+              <a href="#" class="text-decoration-underline small text-muted">Hướng dẫn chọn size</a>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              @for (size of product.sizes; track size) {
+                <button 
+                  type="button" 
+                  class="btn btn-outline-dark size-btn fw-semibold"
+                  [class.active]="selectedSize === size"
+                  (click)="selectedSize = size">
+                  {{ size }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- Số lượng & Nút bấm mua -->
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <!-- Counter -->
+            <div class="quantity-control input-group">
+              <button class="btn btn-outline-secondary" type="button" (click)="updateQuantity(-1)">-</button>
+              <input type="text" class="form-control text-center fw-bold" [value]="quantity" readonly>
+              <button class="btn btn-outline-secondary" type="button" (click)="updateQuantity(1)">+</button>
+            </div>
+
+            <!-- Add to Cart & Buy Now -->
+            <button class="btn btn-outline-dark flex-grow-1 py-2 fw-semibold" (click)="addToCart()">
+              <i class="bi bi-cart-plus me-2"></i>Thêm vào giỏ
+            </button>
+            <button class="btn btn-danger px-4 py-2 fw-semibold">Mua Ngay</button>
+          </div>
+
+          <!-- Thông tin thêm (Accordion / Benefit) -->
+          <div class="benefits-box p-3 rounded-3 bg-light fs-7">
+            <div class="row g-2">
+              <div class="col-6 d-flex align-items-center gap-2">
+                <i class="bi bi-truck text-danger fs-5"></i>
+                <span>Freeship đơn từ 500k</span>
+              </div>
+              <div class="col-6 d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-counterclockwise text-danger fs-5"></i>
+                <span>Đổi trả 30 ngày dễ dàng</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

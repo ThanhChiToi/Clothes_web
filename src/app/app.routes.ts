@@ -13,12 +13,30 @@ export const routes: Routes = [
       },
       {
         path: 'products',
-        loadComponent: () => import('./modules/product/product/product.component').then(c => c.ProductComponent)
+        loadComponent: () => import('./modules/product/product/product.component').then(c => c.ProductComponent),
+        title: 'Danh sách sản phẩm'
       },
       {
-        path: 'product/:id',
-        loadComponent: () => import('./modules/product/product-detail/product-detail.component').then(c => c.ProductDetailComponent)
+        path: 'products/:id',
+        loadComponent: () => import('./modules/product/product-detail/product-detail.component').then(c => c.ProductDetailComponent),
+        title: 'Chi tiết sản phẩm'
       },
+      {
+        path: 'contact',
+        loadComponent: () => import('./modules/contact/contact.component').then(m => m.ContactComponent)
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./modules/profile/profile.component').then(m => m.ProfileComponent)
+      }
+      , {
+        path: 'cart',
+        loadComponent: () => import('./modules/card/card.component').then(m => m.CardComponent)
+      },
+      {
+        path: 'collections',
+        loadComponent: () => import('./modules/collections/collections.component').then(m => m.CollectionsComponent)
+      }
     ]
   },
   { path: '**', redirectTo: '' }

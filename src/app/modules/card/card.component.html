@@ -1,0 +1,266 @@
+<div class="cart-checkout-page py-5 bg-light min-vh-100">
+  <div class="container">
+
+    <h2 class="fw-bold text-uppercase fs-3 mb-4">Giỏ Hàng & Thanh Toán</h2>
+
+    @if (cartItems.length > 0) {
+      <form [formGroup]="checkoutForm" (ngSubmit)="onPlaceOrder()" class="row g-4">
+        
+        <!-- ========================================== -->
+        <!-- CỘT TRÁI: ĐIỀN THÔNG TIN GIAO HÀNG & THANH TOÁN -->
+        <!-- ========================================== -->
+        <div class="col-lg-7">
+          
+          <!-- BƯỚC 1: THÔNG TIN GIAO HÀNG -->
+          <div class="bg-white rounded-4 p-4 border shadow-sm mb-4">
+            <h4 class="fw-bold fs-5 mb-3 d-flex align-items-center gap-2">
+              <span class="step-badge rounded-circle text-white d-inline-flex align-items-center justify-content-center">1</span>
+              Thông Tin Giao Hàng
+            </h4>
+
+            <div class="row g-3">
+              <!-- Họ và tên -->
+              <div class="col-12">
+                <label class="form-label fw-medium small">Họ và tên người nhận <span class="text-danger">*</span></label>
+                <input type="text" class="form-control shadow-none" placeholder="Nguyễn Văn A" 
+                       formControlName="fullName"
+                       [class.is-invalid]="isSubmitted && checkoutForm.get('fullName')?.invalid">
+                <div class="invalid-feedback small">Vui lòng nhập họ tên người nhận.</div>
+              </div>
+
+              <!-- Email & Số điện thoại -->
+              <div class="col-md-6">
+                <label class="form-label fw-medium small">Email nhận thông báo <span class="text-danger">*</span></label>
+                <input type="email" class="form-control shadow-none" placeholder="name@example.com" 
+                       formControlName="email"
+                       [class.is-invalid]="isSubmitted && checkoutForm.get('email')?.invalid">
+                <div class="invalid-feedback small">Vui lòng nhập email hợp lệ.</div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label fw-medium small">Số điện thoại <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control shadow-none" placeholder="0901234567" 
+                       formControlName="phone"
+                       [class.is-invalid]="isSubmitted && checkoutForm.get('phone')?.invalid">
+                <div class="invalid-feedback small">Vui lòng nhập số điện thoại (10-11 số).</div>
+              </div>
+
+              <!-- Tỉnh / Thành, Quận / Huyện, Phường / Xã -->
+              <div class="col-md-4">
+                <label class="form-label fw-medium small">Tỉnh / Thành <span class="text-danger">*</span></label>
+                <select class="form-select shadow-none" formControlName="city"
+                        [class.is-invalid]="isSubmitted && checkoutForm.get('city')?.invalid">
+                  <option value="" disabled selected>Chọn Tỉnh/Thành</option>
+                  <option value="hcm">TP. Hồ Chí Minh</option>
+                  <option value="hn">Hà Nội</option>
+                  <option value="dn">Đà Nẵng</option>
+                </select>
+                <div class="invalid-feedback small">Chọn Tỉnh/Thành.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label fw-medium small">Quận / Huyện <span class="text-danger">*</span></label>
+                <select class="form-select shadow-none" formControlName="district"
+                        [class.is-invalid]="isSubmitted && checkoutForm.get('district')?.invalid">
+                  <option value="" disabled selected>Chọn Quận/Huyện</option>
+                  <option value="q1">Quận 1</option>
+                  <option value="q3">Quận 3</option>
+                  <option value="q7">Quận 7</option>
+                </select>
+                <div class="invalid-feedback small">Chọn Quận/Huyện.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label fw-medium small">Phường / Xã <span class="text-danger">*</span></label>
+                <select class="form-select shadow-none" formControlName="ward"
+                        [class.is-invalid]="isSubmitted && checkoutForm.get('ward')?.invalid">
+                  <option value="" disabled selected>Chọn Phường/Xã</option>
+                  <option value="p1">Phường Bến Nghé</option>
+                  <option value="p2">Phường Bến Thành</option>
+                </select>
+                <div class="invalid-feedback small">Chọn Phường/Xã.</div>
+              </div>
+
+              <!-- Địa chỉ cụ thể -->
+              <div class="col-12">
+                <label class="form-label fw-medium small">Địa chỉ nhận hàng cụ thể <span class="text-danger">*</span></label>
+                <input type="text" class="form-control shadow-none" placeholder="Số nhà, tên đường..." 
+                       formControlName="address"
+                       [class.is-invalid]="isSubmitted && checkoutForm.get('address')?.invalid">
+                <div class="invalid-feedback small">Vui lòng nhập địa chỉ cụ thể.</div>
+              </div>
+
+              <!-- Ghi chú -->
+              <div class="col-12">
+                <label class="form-label fw-medium small">Ghi chú đơn hàng (Tùy chọn)</label>
+                <textarea class="form-control shadow-none" rows="2" placeholder="Ví dụ: Giao giờ hành chính, gọi trước khi giao..." formControlName="note"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- BƯỚC 2: PHƯƠNG THỨC THANH TOÁN -->
+          <div class="bg-white rounded-4 p-4 border shadow-sm">
+            <h4 class="fw-bold fs-5 mb-3 d-flex align-items-center gap-2">
+              <span class="step-badge rounded-circle text-white d-inline-flex align-items-center justify-content-center">2</span>
+              Phương Thức Thanh Toán
+            </h4>
+
+            <div class="d-flex flex-column gap-2">
+              <!-- COD -->
+              <label class="payment-option-card p-3 border rounded-3 d-flex align-items-center gap-3 cursor-pointer">
+                <input class="form-check-input mt-0" type="radio" value="cod" formControlName="paymentMethod">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-cash-stack fs-4 text-success"></i>
+                  <div>
+                    <div class="fw-bold small">Thanh toán khi nhận hàng (COD)</div>
+                    <div class="text-muted fs-7">Nhận hàng rồi mới thanh toán tiền mặt.</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- VietQR / Bank -->
+              <label class="payment-option-card p-3 border rounded-3 d-flex align-items-center gap-3 cursor-pointer">
+                <input class="form-check-input mt-0" type="radio" value="bank" formControlName="paymentMethod">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-qr-code-scan fs-4 text-primary"></i>
+                  <div>
+                    <div class="fw-bold small">Chuyển khoản Ngân hàng / Mã QR</div>
+                    <div class="text-muted fs-7">Tự động tạo mã QR thanh toán VietQR.</div>
+                  </div>
+                </div>
+              </label>
+
+              <!-- MoMo / VNPAY -->
+              <label class="payment-option-card p-3 border rounded-3 d-flex align-items-center gap-3 cursor-pointer">
+                <input class="form-check-input mt-0" type="radio" value="momo" formControlName="paymentMethod">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-wallet2 fs-4 text-danger"></i>
+                  <div>
+                    <div class="fw-bold small">Ví điện tử MoMo / VNPAY</div>
+                    <div class="text-muted fs-7">Thanh toán tức thì qua ứng dụng ví.</div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ========================================== -->
+        <!-- CỘT PHẢI: GIỎ HÀNG CHỈNH SỬA & TỔNG TIỀN -->
+        <!-- ========================================== -->
+        <div class="col-lg-5">
+          <div class="bg-white rounded-4 p-4 border shadow-sm sticky-top" style="top: 20px;">
+            
+            <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+              <h4 class="fw-bold fs-5 mb-0">Sản Phẩm ({{ cartItems.length }})</h4>
+              <a routerLink="/products" class="text-decoration-none small text-primary-custom">Thêm sản phẩm</a>
+            </div>
+
+            <!-- List sản phẩm giỏ hàng -->
+            <div class="cart-items-wrapper mb-3 pe-1 overflow-y-auto" style="max-height: 320px;">
+              @for (item of cartItems; track item.id) {
+                <div class="d-flex align-items-center gap-3 mb-3 pb-3 border-bottom-dashed">
+                  <img [src]="item.image" [alt]="item.name" class="rounded-3 object-fit-cover" style="width: 60px; height: 60px;">
+                  
+                  <div class="flex-grow-1 overflow-hidden">
+                    <h6 class="fw-bold mb-1 text-truncate small">{{ item.name }}</h6>
+                    <div class="text-muted fs-7 mb-2">Màu: {{ item.color }} | Size: {{ item.size }}</div>
+                    
+                    <!-- Cụm chỉnh số lượng -->
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="input-group input-group-sm quantity-control rounded-2 border">
+                        <button class="btn btn-link text-dark shadow-none px-2 py-0" type="button" (click)="updateQuantity(item, -1)">
+                          <i class="bi bi-dash"></i>
+                        </button>
+                        <input type="text" class="form-control text-center border-0 shadow-none bg-transparent px-1 font-monospace fs-7" [value]="item.quantity" readonly>
+                        <button class="btn btn-link text-dark shadow-none px-2 py-0" type="button" (click)="updateQuantity(item, 1)">
+                          <i class="bi bi-plus"></i>
+                        </button>
+                      </div>
+
+                      <!-- Nút Xóa -->
+                      <button type="button" class="btn btn-sm text-secondary hover-danger border-0 p-0 ms-2" (click)="removeItem(item.id)">
+                        <i class="bi bi-trash3 fs-6"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Giá tiền item -->
+                  <div class="fw-bold small text-nowrap align-self-start text-danger">
+                    {{ (item.price * item.quantity) | number:'1.0-0' }}đ
+                  </div>
+                </div>
+              }
+            </div>
+
+            <!-- Mã giảm giá -->
+            <div class="mb-3">
+              <div class="input-group input-group-sm">
+                <input type="text" class="form-control shadow-none text-uppercase" 
+                       placeholder="Nhập mã (STORE2026)" 
+                       [(ngModel)]="couponCode" 
+                       [ngModelOptions]="{standalone: true}">
+                <button class="btn btn-outline-secondary fw-semibold" type="button" (click)="applyCoupon()">Áp dụng</button>
+              </div>
+              @if (couponMessage) {
+                <div class="fs-7 mt-1" [class.text-success]="isCouponApplied" [class.text-danger]="!isCouponApplied">
+                  {{ couponMessage }}
+                </div>
+              }
+            </div>
+
+            <!-- Tóm tắt chi phí -->
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted small">Tạm tính:</span>
+              <span class="fw-semibold small">{{ subtotal | number:'1.0-0' }}đ</span>
+            </div>
+
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted small">Phí vận chuyển:</span>
+              <span class="fw-semibold small">{{ shippingFee | number:'1.0-0' }}đ</span>
+            </div>
+
+            @if (discountAmount > 0) {
+              <div class="d-flex justify-content-between mb-2 text-success">
+                <span class="small">Voucher giảm giá:</span>
+                <span class="fw-semibold small">-{{ discountAmount | number:'1.0-0' }}đ</span>
+              </div>
+            }
+
+            <hr class="my-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <span class="fw-bold">Tổng thanh toán:</span>
+              <span class="fs-4 fw-bold text-danger">{{ grandTotal | number:'1.0-0' }}đ</span>
+            </div>
+
+            <!-- Nút Đặt hàng -->
+            <button type="submit" class="btn btn-primary-custom w-100 py-2-5 fw-bold rounded-3 text-uppercase fs-6">
+              <i class="bi bi-shield-check me-2"></i>ĐẶT HÀNG NGAY
+            </button>
+
+            <p class="text-center text-muted fs-7 mt-3 mb-0">
+              <i class="bi bi-truck me-1"></i> Miễn phí vận chuyển cho đơn hàng từ 1.000.000đ
+            </p>
+
+          </div>
+        </div>
+
+      </form>
+    } @else {
+      <!-- GIAO DIỆN GIỎ HÀNG TRỐNG -->
+      <div class="bg-white rounded-4 p-5 border shadow-sm text-center my-4">
+        <div class="mb-3 text-muted opacity-50">
+          <i class="bi bi-cart-x display-1"></i>
+        </div>
+        <h4 class="fw-bold mb-2">Giỏ hàng của bạn đang trống</h4>
+        <p class="text-muted small mb-4">Hãy chọn thêm vài sản phẩm ưng ý để tiến hành thanh toán nhé!</p>
+        <a routerLink="/products" class="btn btn-primary-custom px-4 py-2-5 fw-semibold rounded-3">
+          Khám phá sản phẩm ngay
+        </a>
+      </div>
+    }
+
+  </div>
+</div>

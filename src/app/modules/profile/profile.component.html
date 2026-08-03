@@ -1,0 +1,246 @@
+<div class="profile-page py-5 bg-light min-vh-100">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- CỘT BÊN TRÁI: SIDEBAR MENU -->
+      <div class="col-lg-3 col-md-4">
+        <div class="bg-white rounded-4 p-4 border shadow-sm">
+          
+          <!-- User Avatar & Mini Info -->
+          <div class="d-flex align-items-center gap-3 pb-3 mb-3 border-bottom">
+            <div class="avatar-box rounded-circle bg-primary text-white fw-bold fs-4 d-flex align-items-center justify-content-center flex-shrink-0">
+              A
+            </div>
+            <div class="overflow-hidden">
+              <h6 class="fw-bold mb-0 text-truncate">Nguyễn Văn A</h6>
+              <span class="text-muted small">Khách hàng thân thiết</span>
+            </div>
+          </div>
+
+          <!-- Navigation Links -->
+          <div class="nav flex-column nav-pills custom-profile-tabs">
+            <button 
+              class="nav-link text-start d-flex align-items-center gap-3 py-2-5 px-3 rounded-3" 
+              [class.active]="activeTab === 'info'" 
+              (click)="setActiveTab('info')">
+              <i class="bi bi-person-fill fs-5"></i>
+              <span>Thông tin tài khoản</span>
+            </button>
+
+            <button 
+              class="nav-link text-start d-flex align-items-center gap-3 py-2-5 px-3 rounded-3" 
+              [class.active]="activeTab === 'orders'" 
+              (click)="setActiveTab('orders')">
+              <i class="bi bi-bag-check-fill fs-5"></i>
+              <span>Đơn hàng của tôi</span>
+            </button>
+
+            <button 
+              class="nav-link text-start d-flex align-items-center gap-3 py-2-5 px-3 rounded-3" 
+              [class.active]="activeTab === 'address'" 
+              (click)="setActiveTab('address')">
+              <i class="bi bi-geo-alt-fill fs-5"></i>
+              <span>Sổ địa chỉ</span>
+            </button>
+
+            <button 
+              class="nav-link text-start d-flex align-items-center gap-3 py-2-5 px-3 rounded-3" 
+              [class.active]="activeTab === 'password'" 
+              (click)="setActiveTab('password')">
+              <i class="bi bi-shield-lock-fill fs-5"></i>
+              <span>Đổi mật khẩu</span>
+            </button>
+
+            <hr class="my-2">
+
+            <button class="nav-link text-danger text-start d-flex align-items-center gap-3 py-2-5 px-3 rounded-3">
+              <i class="bi bi-box-arrow-right fs-5"></i>
+              <span>Đăng xuất</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CỘT BÊN PHẢI: TAB CONTENT -->
+      <div class="col-lg-9 col-md-8">
+        <div class="bg-white rounded-4 p-4 p-md-5 border shadow-sm h-100">
+          
+          <!-- TAB 1: THÔNG TIN CÁ NHÂN -->
+          @if (activeTab === 'info') {
+            <div>
+              <h4 class="fw-bold mb-1">Hồ Sơ Của Tôi</h4>
+              <p class="text-muted small mb-4">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+
+              <form [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()" class="row g-3" style="max-width: 650px;">
+                
+                <div class="col-12">
+                  <label class="form-label fw-medium small">Họ và tên</label>
+                  <input type="text" class="form-control shadow-none" formControlName="fullName"
+                    [class.is-invalid]="isInfoSubmitted && profileForm.get('fullName')?.invalid">
+                  <div class="invalid-feedback small">Vui lòng nhập họ và tên.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-medium small">Địa chỉ Email</label>
+                  <input type="email" class="form-control shadow-none bg-light" formControlName="email" readonly>
+                  <div class="form-text fs-7">Email không thể thay đổi.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-medium small">Số điện thoại</label>
+                  <input type="tel" class="form-control shadow-none" formControlName="phone"
+                    [class.is-invalid]="isInfoSubmitted && profileForm.get('phone')?.invalid">
+                  <div class="invalid-feedback small">Số điện thoại không hợp lệ.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-medium small">Giới tính</label>
+                  <div class="d-flex gap-4 pt-1">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" value="male" id="male" formControlName="gender">
+                      <label class="form-check-label small" for="male">Nam</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" value="female" id="female" formControlName="gender">
+                      <label class="form-check-label small" for="female">Nữ</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" value="other" id="other" formControlName="gender">
+                      <label class="form-check-label small" for="other">Khác</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-medium small">Ngày sinh</label>
+                  <input type="date" class="form-control shadow-none" formControlName="dob">
+                </div>
+
+                <div class="col-12 pt-3">
+                  <button type="submit" class="btn btn-primary-custom px-4 py-2 fw-semibold rounded-3">
+                    Lưu thay đổi
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          }
+
+          <!-- TAB 2: ĐƠN HÀNG CỦA TÔI -->
+          @if (activeTab === 'orders') {
+            <div>
+              <h4 class="fw-bold mb-1">Lịch Sử Đơn Hàng</h4>
+              <p class="text-muted small mb-4">Theo dõi trạng thái các đơn hàng gần đây của bạn</p>
+
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead class="table-light small text-uppercase">
+                    <tr>
+                      <th>Mã đơn</th>
+                      <th>Ngày đặt</th>
+                      <th>Số lượng</th>
+                      <th>Tổng tiền</th>
+                      <th>Trạng thái</th>
+                      <th class="text-end">Thao tác</th>
+                    </tr>
+                  </thead>
+                  <tbody class="small">
+                    @for (order of orders; track order.id) {
+                      <tr>
+                        <td class="fw-bold">{{ order.id }}</td>
+                        <td>{{ order.date }}</td>
+                        <td>{{ order.itemsCount }} sản phẩm</td>
+                        <td class="fw-bold text-danger">{{ order.total | number:'1.0-0' }}đ</td>
+                        <td>
+                          @switch (order.status) {
+                            @case ('Completed') { <span class="badge bg-success-subtle text-success px-2.5 py-1.5">Hoàn thành</span> }
+                            @case ('Pending') { <span class="badge bg-warning-subtle text-warning-emphasis px-2.5 py-1.5">Đang xử lý</span> }
+                            @case ('Cancelled') { <span class="badge bg-danger-subtle text-danger px-2.5 py-1.5">Đã hủy</span> }
+                          }
+                        </td>
+                        <td class="text-end">
+                          <button class="btn btn-sm btn-outline-dark rounded-2">Chi tiết</button>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          }
+
+          <!-- TAB 3: SỔ ĐỊA CHỈ -->
+          @if (activeTab === 'address') {
+            <div>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                  <h4 class="fw-bold mb-1">Địa Chỉ Nhận Hàng</h4>
+                  <p class="text-muted small mb-0">Quản lý danh sách địa chỉ giao hàng của bạn</p>
+                </div>
+                <button class="btn btn-primary-custom btn-sm px-3 py-2 rounded-3">
+                  <i class="bi bi-plus-lg me-1"></i>Thêm địa chỉ mới
+                </button>
+              </div>
+
+              <div class="border rounded-3 p-3 mb-3 position-relative">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div>
+                    <span class="fw-bold me-2">Nguyễn Văn A</span>
+                    <span class="text-muted small">| (+84) 901 234 567</span>
+                    <span class="badge bg-danger-subtle text-danger ms-2">Mặc định</span>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-sm btn-link text-dark text-decoration-none p-0" type="button">Chỉnh sửa</button>
+                  </div>
+                </div>
+                <p class="text-muted small mb-0">123 Đường ABC, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</p>
+              </div>
+            </div>
+          }
+
+          <!-- TAB 4: ĐỔI MẬT KHẨU -->
+          @if (activeTab === 'password') {
+            <div>
+              <h4 class="fw-bold mb-1">Đổi Mật Khẩu</h4>
+              <p class="text-muted small mb-4">Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</p>
+
+              <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()" class="row g-3" style="max-width: 500px;">
+                
+                <div class="col-12">
+                  <label class="form-label fw-medium small">Mật khẩu hiện tại</label>
+                  <input type="password" class="form-control shadow-none" formControlName="currentPassword"
+                    [class.is-invalid]="isPasswordSubmitted && passwordForm.get('currentPassword')?.invalid">
+                  <div class="invalid-feedback small">Vui lòng nhập mật khẩu hiện tại.</div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-medium small">Mật khẩu mới</label>
+                  <input type="password" class="form-control shadow-none" formControlName="newPassword"
+                    [class.is-invalid]="isPasswordSubmitted && passwordForm.get('newPassword')?.invalid">
+                  <div class="invalid-feedback small">Mật khẩu mới phải có ít nhất 6 ký tự.</div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-medium small">Xác nhận mật khẩu mới</label>
+                  <input type="password" class="form-control shadow-none" formControlName="confirmPassword"
+                    [class.is-invalid]="isPasswordSubmitted && (passwordForm.get('confirmPassword')?.invalid || passwordForm.hasError('mismatch'))">
+                  <div class="invalid-feedback small">Mật khẩu xác nhận không trùng khớp.</div>
+                </div>
+
+                <div class="col-12 pt-3">
+                  <button type="submit" class="btn btn-primary-custom px-4 py-2 fw-semibold rounded-3">
+                    Đổi mật khẩu
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          }
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,185 @@
+<div class="contact-page py-5">
+  <div class="container">
+    
+    <!-- PAGE TITLE -->
+    <div class="text-center mb-5">
+      <h1 class="fw-bold text-uppercase fs-2 mb-2">Liên Hệ Với Chúng Tôi</h1>
+      <p class="text-muted mx-auto" style="max-width: 600px;">
+        Chúng tôi luôn sẵn sàng lắng nghe mọi thắc mắc và đóng góp từ bạn. Hãy gửi tin nhắn cho chúng tôi hoặc ghé thăm cửa hàng trực tiếp!
+      </p>
+    </div>
+
+    <div class="row g-4 g-lg-5 mb-5">
+      
+      <!-- CỘT BÊN TRÁI: THÔNG TIN LIÊN HỆ -->
+      <div class="col-lg-5">
+        <div class="contact-info-card p-4 p-md-5 rounded-4 text-white h-100 d-flex flex-column justify-content-between">
+          <div>
+            <h3 class="fw-bold fs-4 mb-4">Thông Tin Liên Hệ</h3>
+            
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="icon-box rounded-circle text-danger d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="bi bi-geo-alt-fill fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Địa chỉ cửa hàng</h6>
+                <p class="mb-0 text-white-80 small lh-base">123 Đường ABC, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="icon-box rounded-circle text-danger d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="bi bi-telephone-fill fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Hotline tư vấn</h6>
+                <p class="mb-0 text-white-80 small">1900 xxxx (8:00 - 22:00)</p>
+                <p class="mb-0 text-white-80 small">0901 xxx xxx (Khiếu nại)</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="icon-box rounded-circle text-danger d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="bi bi-envelope-fill fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Email hỗ trợ</h6>
+                <p class="mb-0 text-white-80 small">cskh&#64;store.com</p>
+                <p class="mb-0 text-white-80 small">support&#64;store.com</p>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start gap-3 mb-4">
+              <div class="icon-box rounded-circle text-danger d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="bi bi-clock-fill fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Giờ mở cửa</h6>
+                <p class="mb-0 text-white-80 small">Thứ 2 - Chủ Nhật: 08:30 - 21:30</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mạng xã hội -->
+          <div class="pt-4 border-top border-white-15">
+            <h6 class="fw-bold mb-3 small text-uppercase tracking-wider">Theo dõi chúng tôi</h6>
+            <div class="d-flex gap-2">
+              <a href="#" class="social-btn rounded-circle text-white d-flex align-items-center justify-content-center text-decoration-none">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="#" class="social-btn rounded-circle text-white d-flex align-items-center justify-content-center text-decoration-none">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="#" class="social-btn rounded-circle text-white d-flex align-items-center justify-content-center text-decoration-none">
+                <i class="bi bi-tiktok"></i>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CỘT BÊN PHẢI: FORM GỬI PHẢN HỒI -->
+      <div class="col-lg-7">
+        <div class="bg-white p-4 p-md-5 rounded-4 border shadow-sm">
+          <h3 class="fw-bold fs-4 mb-2">Gửi Tin Nhắn Cho Chúng Tôi</h3>
+          <p class="text-muted small mb-4">Điền đầy đủ thông tin bên dưới, đội ngũ hỗ trợ sẽ liên hệ lại với bạn trong vòng 24h.</p>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="row g-3">
+            
+            <!-- Họ và tên -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium small">Họ và tên <span class="text-danger">*</span></label>
+              <input 
+                type="text" 
+                class="form-control shadow-none" 
+                placeholder="Nguyễn Văn A" 
+                formControlName="fullName"
+                [class.is-invalid]="isSubmitted && contactForm.get('fullName')?.invalid">
+              <div class="invalid-feedback small">Vui lòng nhập họ và tên (tối thiểu 2 ký tự).</div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium small">Email <span class="text-danger">*</span></label>
+              <input 
+                type="email" 
+                class="form-control shadow-none" 
+                placeholder="name@example.com" 
+                formControlName="email"
+                [class.is-invalid]="isSubmitted && contactForm.get('email')?.invalid">
+              <div class="invalid-feedback small">Vui lòng nhập địa chỉ email hợp lệ.</div>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium small">Số điện thoại</label>
+              <input 
+                type="tel" 
+                class="form-control shadow-none" 
+                placeholder="0901234567" 
+                formControlName="phone"
+                [class.is-invalid]="isSubmitted && contactForm.get('phone')?.invalid">
+              <div class="invalid-feedback small">Số điện thoại phải bao gồm 10-11 chữ số.</div>
+            </div>
+
+            <!-- Chủ đề -->
+            <div class="col-md-6">
+              <label class="form-label fw-medium small">Chủ đề <span class="text-danger">*</span></label>
+              <select 
+                class="form-select shadow-none" 
+                formControlName="subject"
+                [class.is-invalid]="isSubmitted && contactForm.get('subject')?.invalid">
+                <option value="" disabled selected>Chọn chủ đề...</option>
+                <option value="order">Tư vấn đơn hàng / Mua hàng</option>
+                <option value="return">Đổi trả & Bảo hành</option>
+                <option value="feedback">Góp ý dịch vụ</option>
+                <option value="other">Chủ đề khác</option>
+              </select>
+              <div class="invalid-feedback small">Vui lòng chọn chủ đề liên hệ.</div>
+            </div>
+
+            <!-- Nội dung lời nhắn -->
+            <div class="col-12">
+              <label class="form-label fw-medium small">Nội dung tin nhắn <span class="text-danger">*</span></label>
+              <textarea 
+                class="form-control shadow-none" 
+                rows="4" 
+                placeholder="Nhập nội dung bạn cần hỗ trợ..." 
+                formControlName="message"
+                [class.is-invalid]="isSubmitted && contactForm.get('message')?.invalid"></textarea>
+              <div class="invalid-feedback small">Vui lòng nhập nội dung (tối thiểu 10 ký tự).</div>
+            </div>
+
+            <!-- Nút gửi -->
+            <div class="col-12 pt-2">
+              <button type="submit" class="btn btn-primary-custom px-5 py-2-5 fw-bold rounded-3 w-100 w-md-auto">
+                <i class="bi bi-send-fill me-2"></i>Gửi tin nhắn
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BẢN ĐỒ GOOGLE MAPS -->
+    <div class="row">
+      <div class="col-12">
+        <div class="map-container rounded-4 overflow-hidden border shadow-sm">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.424177421379!2d106.70014387570397!3d10.778788159149491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f48d320956b%3A0xe2130386cf748386!2zTmd1eeG7hW4gSHXhu4checkgTMOqIEzhu4DynamicoQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1710000000000!5m2!1svi!2s" 
+            width="100%" 
+            height="400" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

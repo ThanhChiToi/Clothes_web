@@ -1,0 +1,66 @@
+.profile-page {
+  .avatar-box {
+    width: 52px;
+    height: 52px;
+    background-color: #1b3865 !important;
+  }
+
+  /* Custom Sidebar Navigation */
+  .custom-profile-tabs {
+    .nav-link {
+      color: #495057;
+      font-weight: 500;
+      transition: all 0.2s ease;
+
+      i {
+        color: #6c757d;
+        transition: color 0.2s ease;
+      }
+
+      &:hover {
+        background-color: #f8f9fa;
+        color: #1b3865;
+
+        i {
+          color: #1b3865;
+        }
+      }
+
+      &.active {
+        background-color: #1b3865;
+        color: #ffffff;
+
+        i {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  /* Primary Button Styling */
+  .btn-primary-custom {
+    background-color: #1b3865;
+    border-color: #1b3865;
+    color: #ffffff;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #132a4e;
+      border-color: #132a4e;
+    }
+  }
+
+  /* Form & Table Helpers */
+  .form-control, .form-select {
+    padding: 0.6rem 0.85rem;
+    border-color: #dee2e6;
+
+    &:focus {
+      border-color: #1b3865;
+    }
+  }
+
+  .fs-7 {
+    font-size: 0.8rem;
+  }
+}
