@@ -1,1 +1,0 @@
-import{La as n,Ma as r,Ra as p,V as o,Xa as a}from"./chunk-D26UWAXH.js";var c=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=o({type:t,selectors:[["app-product"]],standalone:!0,features:[a],decls:2,vars:0,template:function(e,d){e&1&&(n(0,"p"),p(1,"product works!"),r())}})};export{c as ProductComponent};
