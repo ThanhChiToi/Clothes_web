@@ -47,57 +47,119 @@ body {
   background: #94a3b8;
 }
 
-.custom-shaped-card {
-  height: 480px;
-  cursor: pointer;
-  overflow: hidden;
+//
+// CSS Variables nội bộ cho trang
+$card-radius: 12px;
+$img-radius: 8px;
+$transition-smooth: opacity 0.4s ease-in-out, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 
-  .img-limit {
-    position: relative;
-    overflow: hidden;
-    margin: 7px;
-
-    img {
-      object-fit: cover;
-      width: 100%;
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-      height: 362px;
-      display: block;
-    }
-
-    img:hover {
-      transform: scale(1.04)
-    }
-  }
-
-  .card-text-group{
-    padding: 8px;
-  }
-
-  // .card-img,
-  // .card-img-top {
-  //   border-top-left-radius: unset;
-  //   border-top-right-radius: unset;
-  // }
-}
-
-.card-text-product-main {
-  color: $primary;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 18px;
-}
-
-.card-text-product-price {
+.text-base{
   color: $original;
-  font-size: 18px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.img-icon-policies{
-  width: 40px;
-  height: 40px;
+.product-page {
+  /* 1. HERO BANNER */
+  .hero-banner {
+    position: relative;
+    height: 220px;
+    background: url('https://picsum.photos/id/1060/1400/400') center/cover no-repeat;
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+  }
+
+  /* 2. FILTER BAR */
+  .filter-bar {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+
+    .filter-select, .sort-select {
+      width: auto;
+      min-width: 140px;
+      cursor: pointer;
+      background-color: #fff;
+    }
+  }
+
+  /* 3. CUSTOM CARD & ANIMATION IMAGE SWAP */
+  .custom-shaped-card {
+    border-radius: $card-radius;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+
+    /* Khung giới hạn ảnh */
+    .img-limit {
+      position: relative;
+      height: 362px; /* Độ cao khung ảnh */
+      margin: 7px;   /* Margin tạo khoảng thở nội bộ */
+      border-radius: $img-radius;
+      overflow: hidden;
+      background-color: #f1f1f1;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: $transition-smooth;
+      }
+
+      /* Ảnh gốc hiển thị mặc định */
+      .img-primary {
+        opacity: 1;
+        z-index: 1;
+      }
+
+      /* Ảnh thứ 2 ẩn sẵn */
+      .img-hover {
+        opacity: 0;
+        z-index: 2;
+      }
+    }
+
+    /* Tiêu đề 2 dòng có dấu ... */
+    .product-title {
+      line-height: 1.4;
+      height: 2.8em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      a:hover {
+        color: #0d6efd !important;
+      }
+    }
+
+    /* --- HOVER EFFECT --- */
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+
+      .img-limit {
+        .img-primary {
+          opacity: 0;
+        }
+
+        .img-hover {
+          opacity: 1;
+          transform: scale(1.06); /* Phóng to mượt ảnh thứ 2 */
+        }
+      }
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .product-page {
+    .hero-banner { height: 160px; }
+    .custom-shaped-card .img-limit { height: 220px; }
+  }
 }

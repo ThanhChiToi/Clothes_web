@@ -12,31 +12,20 @@
 
     <!-- 1. BÊN TRÁI: LOGO HÌNH CHỮ NHẬT -->
     <a href="#" class="logo-rectangular">
-      <div class="logo-inner">
-        <span class="logo-brand">Grausam</span>
-        <span class="logo-sub">STUDIO • CLOTHING</span>
+      <div>
+        <img class="logo-inner" src="./assets/images/logo/logo_grausam.png" alt="">
       </div>
       <div class="logo-border-glow"></div>
     </a>
 
     <!-- 2. Ở GIỮA: CÁC ĐƯỜNG DẪN MENU -->
-    <!-- <nav class="navbar-nav desktop-nav">
-      <ul>
-        <li *ngFor="let item of navItems" [ngClass]="{'active': activeLink === item.label}">
-          <a (click)="setActive(item.label)" [href]="item.link" class="nav-link">
-            <span>{{ item.label }}</span>
-            <span *ngIf="item.badge" class="nav-badge" [ngClass]="item.badgeClass">{{ item.badge }}</span>
-          </a>
-        </li>
-      </ul>
-    </nav> -->
     <nav class="navbar-nav desktop-nav">
       <ul>
         <li *ngFor="let item of navItems"
           [ngClass]="{'active': activeLink === item.label, 'has-dropdown': item.children && item.children.length > 0}">
 
           <!-- Đường dẫn chính -->
-          <a (click)="setActive(item.label)" [href]="item.link" class="nav-link">
+          <a (click)="setActive(item.label)" [routerLink]="item.link" class="nav-link">
             <span>{{ item.label }}</span>
 
             <!-- Mũi tên nhỏ (chỉ hiện khi có menu con) -->
@@ -45,13 +34,13 @@
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
 
-            <span *ngIf="item.badge" class="nav-badge" [ngClass]="item.badgeClass">{{ item.badge }}</span>
+            <!-- <span *ngIf="item.badge" class="nav-badge" [ngClass]="item.badgeClass">{{ item.badge }}</span> -->
           </a>
 
           <!-- Khung Popup Menu con (xổ xuống) -->
           <div *ngIf="item.children && item.children.length > 0" class="dropdown-menu">
             <div class="dropdown-list">
-              <a *ngFor="let subItem of item.children" [href]="subItem.link" class="dropdown-item">
+              <a *ngFor="let subItem of item.children" [routerLink]="subItem.link" class="dropdown-item">
                 <span>{{ subItem.label }}</span>
                 <span *ngIf="subItem.badge" class="sub-badge">{{ subItem.badge }}</span>
               </a>
@@ -89,9 +78,9 @@
             <p class="user-status">Thành viên thân thiết</p>
           </div>
           <hr />
-          <a href="profile" class="menu-item">Tài khoản của tôi</a>
-          <a href="orders" class="menu-item">Đơn mua</a>
-          <a href="logout" class="menu-item logout">Đăng xuất</a>
+          <a routerLink="/profile" class="menu-item">Tài khoản của tôi</a>
+          <a routerLink="/orders" class="menu-item">Đơn mua</a>
+          <a routerLink="/logout" class="menu-item logout">Đăng xuất</a>
         </div>
       </div>
 
@@ -157,7 +146,7 @@
     </div>
     <ul class="mobile-nav-list">
       <li *ngFor="let item of navItems" [ngClass]="{'active': activeLink === item.label}">
-        <a (click)="setActive(item.label)" [href]="item.link">
+        <a (click)="setActive(item.label)" [routerLink]="item.link">
           <span>{{ item.label }}</span>
           <span *ngIf="item.badge" class="nav-badge" [ngClass]="item.badgeClass">{{ item.badge }}</span>
         </a>

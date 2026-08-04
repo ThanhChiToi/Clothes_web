@@ -36,9 +36,13 @@ export const routes: Routes = [
       {
         path: 'collections',
         loadComponent: () => import('./modules/collections/collections.component').then(m => m.CollectionsComponent)
-      }
+      },
+      {
+        path: '404',
+        loadComponent: () => import('./modules/not-found/not-found.component').then(m => m.NotFoundComponent)
+      },
     ]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '404' }
 ];
 

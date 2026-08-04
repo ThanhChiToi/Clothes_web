@@ -12,6 +12,13 @@ $text-muted: #64748b;
 $bg-light: #ffffff;
 $border-color: rgba(226, 232, 240, 0.8);
 
+// ÉP KHÔNG BỊ CẮT MẤT DROPDOWN KHI HIỂN THỊ
+.navbar-header,
+.navbar-container,
+.desktop-nav {
+  overflow: visible !important;
+}
+
 // 1. Top Announcement Bar
 .top-announcement {
   background: #1b3865;
@@ -80,53 +87,25 @@ $border-color: rgba(226, 232, 240, 0.8);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 18px;
-  background: #0f172a;
-  color: #ffffff;
   text-decoration: none;
-  border-radius: 4px; // Hình chữ nhật chuẩn
+  border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
-
-    .logo-border-glow {
-      opacity: 1;
-      transform: translateX(100%);
-    }
-
-    .logo-brand {
-      color: $accent;
-    }
-  }
-
   .logo-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.1;
+    height: 50px;
+    object-fit: cover;
   }
 
   .logo-brand {
     font-size: 1.25rem;
     font-weight: 900;
     letter-spacing: 3.5px;
-    color: #ffffff;
+    color: #1b3865;
     transition: color 0.3s ease;
     text-transform: uppercase;
     font-family: 'Montserrat', 'Inter', sans-serif;
-  }
-
-  .logo-sub {
-    font-size: 0.52rem;
-    letter-spacing: 2px;
-    color: #94a3b8;
-    text-transform: uppercase;
-    margin-top: 2px;
   }
 
   .logo-border-glow {
@@ -141,10 +120,11 @@ $border-color: rgba(226, 232, 240, 0.8);
   }
 }
 
-// 4. MENU Ở GIỮA
+// 4. MENU Ở GIỮA (ĐÃ SỬA HOÀN TOÀN DROPDOWN HOVER)
 .desktop-nav {
-  display: flex;
+  display: flex !important;
   align-items: center;
+  flex-direction: row !important; /* Ghi đè Bootstrap navbar-nav */
 
   ul {
     display: flex;
@@ -156,49 +136,136 @@ $border-color: rgba(226, 232, 240, 0.8);
   }
 
   li {
-    position: relative;
+    position: relative; // Bắt buộc để khung con căn theo thẻ li cha
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: #334155;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      padding: 12px 0;
+      position: relative;
+      transition: color 0.25s ease;
+      cursor: pointer;
+
+      .arrow-icon {
+        transition: transform 0.3s ease;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #1b3865;
+        border-radius: 2px;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    /* ------------------------------------------- */
+    /* CẤU HÌNH POPUP DROPDOWN MENU CON            */
+    /* ------------------------------------------- */
+    .dropdown-menu {
+      display: block !important; // Bắt buộc ép ghi đè display:none của Bootstrap
+      position: absolute !important;
+      top: 100% !important;
+      left: 0 !important;
+      min-width: 200px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      border: 1px solid #f1f5f9;
+      margin: 0 !important; // Bỏ margin mặc định Bootstrap
+      
+      /* Trạng thái ẩn mặc định */
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: translateY(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      z-index: 1100;
+
+      /* Cầu nối tản nhiệt vô hình chống rớt chuột khi di chuyển xuống */
+      &::before {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: 0;
+        width: 100%;
+        height: 12px;
+      }
+
+      .dropdown-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        .dropdown-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 8px 12px;
+          color: #475569;
+          text-decoration: none;
+          font-size: 0.88rem;
+          font-weight: 500;
+          border-radius: 6px;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background-color: rgba(27, 56, 101, 0.06);
+            color: #1b3865;
+            padding-left: 16px; // Hiệu ứng trượt nhẹ chữ
+          }
+
+          .sub-badge {
+            font-size: 0.65rem;
+            background-color: $rose;
+            color: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    /* ------------------------------------------- */
+    /* KÍCH HOẠT HIỂN THỊ KHI RÊ CHUỘT (HOVER)     */
+    /* ------------------------------------------- */
+    &:hover {
+      .nav-link {
+        color: #1b3865;
+
+        &::after {
+          width: 100%;
+        }
+
+        .arrow-icon {
+          transform: rotate(180deg); // Xoay ngược mũi tên
+        }
+      }
+
+      /* Hiển thị Khung Dropdown con */
+      .dropdown-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+    }
 
     &.active .nav-link {
       color: $text-dark;
       font-weight: 700;
-
-      // &::after {
-      //   width: 100%;
-      // }
-    }
-  }
-
-  .nav-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    color: #334155;
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    padding: 10px 0;
-    position: relative;
-    transition: color 0.25s ease;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $primary;
-      border-radius: 2px;
-      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    &:hover {
-      color: $primary;
-
-      &::after {
-        width: 100%;
-      }
     }
   }
 
@@ -259,7 +326,7 @@ $border-color: rgba(226, 232, 240, 0.8);
 
     &:hover {
       background: #f1f5f9;
-      color: $primary;
+      color: #1b3865;
       transform: translateY(-1px);
     }
 
@@ -294,9 +361,9 @@ $border-color: rgba(226, 232, 240, 0.8);
   position: relative;
 
   &:hover .user-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
   }
 }
 
@@ -349,7 +416,7 @@ $border-color: rgba(226, 232, 240, 0.8);
 
     &:hover {
       background: #f8fafc;
-      color: $primary;
+      color: #1b3865;
     }
 
     &.logout {
@@ -425,7 +492,7 @@ $border-color: rgba(226, 232, 240, 0.8);
 
 @media (max-width: 992px) {
   .desktop-nav {
-    display: none;
+    display: none !important;
   }
 
   .mobile-toggle {
@@ -534,100 +601,9 @@ $border-color: rgba(226, 232, 240, 0.8);
 
       &.active a {
         background: #f1f5f9;
-        color: $primary;
+        color: #1b3865;
         font-weight: 700;
       }
     }
-  }
-}
-
-
-/* --- HIỆU ỨNG DROPDOWN MENU MƯỢT MÀ --- */
-.desktop-nav ul li {
-  position: relative; /* Giúp khung popup căn theo nút cha */
-
-  .nav-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-
-    .arrow-icon {
-      transition: transform 0.3s ease;
-    }
-  }
-
-  /* Xoay mũi tên khi rê chuột vào */
-  &:hover .nav-link .arrow-icon {
-    transform: rotate(180deg);
-  }
-
-  /* Khung Popup */
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px); /* Đẩy nhẹ xuống dưới */
-    min-width: 200px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    border: 1px solid #f0f0f0;
-    
-    /* Mặc định ẩn đi */
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 99;
-
-    /* Cầu nối invisible giúp di chuột không bị mất popup */
-    &::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 0;
-      width: 100%;
-      height: 10px;
-    }
-
-    .dropdown-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-
-      .dropdown-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 12px;
-        color: #333;
-        text-decoration: none;
-        font-size: 0.88rem;
-        border-radius: 6px;
-        transition: all 0.2s ease;
-
-        /* Hiệu ứng rê chuột vào mục con */
-        &:hover {
-          background-color: #f5f5f5;
-          color: #000;
-          padding-left: 16px; /* Trượt nhẹ sang phải */
-        }
-
-        .sub-badge {
-          font-size: 0.68rem;
-          background-color: #e53935;
-          color: #fff;
-          padding: 2px 6px;
-          border-radius: 4px;
-        }
-      }
-    }
-  }
-
-  /* KHI RÊ CHUỘT VÀO MENU CHA -> HIỆN POPUP */
-  &:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0); /* Nâng nhẹ lên mượt mà */
   }
 }
