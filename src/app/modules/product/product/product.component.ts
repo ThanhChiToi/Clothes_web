@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 interface Product {
@@ -20,7 +20,6 @@ interface Product {
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
-
   bannerTitle = 'Bộ Sưu Tập Thu Đông 2026';
   bannerSubtitle = 'Khám phá các phong cách thời trang hiện đại & tinh tế';
 
@@ -94,5 +93,4 @@ export class ProductComponent {
       hoverImg: 'https://picsum.photos/id/106/600/800'
     }
   ];
-
 }

@@ -19,6 +19,16 @@
     </a>
 
     <!-- 2. Ở GIỮA: CÁC ĐƯỜNG DẪN MENU -->
+    <!-- <nav class="navbar-nav desktop-nav">
+      <ul>
+        <li *ngFor="let item of navItems" [ngClass]="{'active': activeLink === item.label}">
+          <a (click)="setActive(item.label)" [href]="item.link" class="nav-link">
+            <span>{{ item.label }}</span>
+            <span *ngIf="item.badge" class="nav-badge" [ngClass]="item.badgeClass">{{ item.badge }}</span>
+          </a>
+        </li>
+      </ul>
+    </nav> -->
     <nav class="navbar-nav desktop-nav">
       <ul>
         <li *ngFor="let item of navItems"

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../../../shared/service/toast.service';
 
 interface ProductDetail {
   id: number;
@@ -24,7 +25,7 @@ interface ProductDetail {
   styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent {
-
+  private toastService = inject(ToastService);
   product: ProductDetail = {
     id: 101,
     name: 'Áo Polo Nam Marvel Spider-Man Edition',
@@ -67,13 +68,15 @@ export class ProductDetailComponent {
     }
   }
 
-  addToCart(): void {
-    console.log('Thêm vào giỏ:', {
-      product: this.product.name,
-      color: this.selectedColor.name,
-      size: this.selectedSize,
-      quantity: this.quantity
+  addToCart(product: any) {
+    // 1. Logic thêm vào giỏ hàng của bạn ở đây...
+
+    // 2. Kích hoạt Toast hiển thị góc dưới
+    this.toastService.showProductAdded({
+      name: product.name || 'Áo Sơ Mi Silk Desire',
+      price: product.price || 450000,
+      image: product.image || 'https://picsum.photos/id/1059/100/100'
     });
   }
-  
+
 }
