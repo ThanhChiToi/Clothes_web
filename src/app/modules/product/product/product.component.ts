@@ -31,15 +31,15 @@ export class ProductComponent {
       name: 'Áo Polo Nam Marvel Spider-Man Edition',
       price: 1200000,
       originalPrice: 1500000,
-      primaryImg: 'https://picsum.photos/id/1005/600/800',
-      hoverImg: 'https://picsum.photos/id/1025/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
+      hoverImg: 'https://picsum.photos/200/300/?blur',
       isNew: true
     },
     {
       id: 2,
       name: 'Áo Sơ Mi Cotton Premium Uniqlo Style',
       price: 890000,
-      primaryImg: 'https://picsum.photos/id/1059/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/1062/600/800'
     },
     {
@@ -47,7 +47,7 @@ export class ProductComponent {
       name: 'Áo Khoác Bomber Minimalist Urban',
       price: 2100000,
       originalPrice: 2450000,
-      primaryImg: 'https://picsum.photos/id/1074/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/1069/600/800',
       isNew: true
     },
@@ -55,42 +55,42 @@ export class ProductComponent {
       id: 4,
       name: 'Quần Jeans Slim-Fit Classic Blue',
       price: 950000,
-      primaryImg: 'https://picsum.photos/id/103/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/106/600/800'
     },
     {
       id: 5,
       name: 'Quần Jeans Slim-Fit Classic Blue',
       price: 950000,
-      primaryImg: 'https://picsum.photos/id/103/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/106/600/800'
     },
     {
       id: 6,
       name: 'Quần Jeans Slim-Fit Classic Blue',
       price: 950000,
-      primaryImg: 'https://picsum.photos/id/103/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/106/600/800'
     },
     {
       id: 7,
       name: 'Quần Jeans Slim-Fit Classic Blue',
       price: 950000,
-      primaryImg: 'https://picsum.photos/id/103/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/106/600/800'
     },
     {
       id: 8,
       name: 'Quần Jeans Slim-Fit Classic Blue',
       price: 950000,
-      primaryImg: 'https://picsum.photos/id/103/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/106/600/800'
     },
     {
       id: 9,
       name: 'Quần Jeans Slim-Fit Classic Blue',
       price: 950000,
-      primaryImg: 'https://picsum.photos/id/103/600/800',
+      primaryImg: 'https://picsum.photos/seed/picsum/200/300',
       hoverImg: 'https://picsum.photos/id/106/600/800'
     }
   ];

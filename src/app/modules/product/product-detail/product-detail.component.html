@@ -56,7 +56,7 @@
 
           <!-- Giá bán -->
           <div class="price-box p-3 rounded-3 mb-4 d-flex align-items-baseline gap-3">
-            <span class="fs-3 fw-bold text-danger">
+            <span class="fs-3 fw-bold text-base">
               {{ product.price | currency:'VND':'symbol':'1.0-0' }}
             </span>
             @if (product.originalPrice) {
@@ -128,11 +128,11 @@
           <div class="benefits-box p-3 rounded-3 bg-light fs-7">
             <div class="row g-2">
               <div class="col-6 d-flex align-items-center gap-2">
-                <i class="bi bi-truck text-danger fs-5"></i>
+                <i class="bi bi-truck text-base fs-5"></i>
                 <span>Freeship đơn từ 500k</span>
               </div>
               <div class="col-6 d-flex align-items-center gap-2">
-                <i class="bi bi-arrow-counterclockwise text-danger fs-5"></i>
+                <i class="bi bi-arrow-counterclockwise text-base fs-5"></i>
                 <span>Đổi trả 30 ngày dễ dàng</span>
               </div>
             </div>
