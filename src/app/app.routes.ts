@@ -41,6 +41,10 @@ export const routes: Routes = [
         path: '404',
         loadComponent: () => import('./modules/not-found/not-found.component').then(m => m.NotFoundComponent)
       },
+      {
+        path: 'order-success/:id',
+        loadComponent: () => import('./modules/order-success/order-success.component').then(m => m.OrderSuccessComponent)
+      }
     ]
   },
   { path: '**', redirectTo: '404' }

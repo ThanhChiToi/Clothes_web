@@ -128,4 +128,8 @@ export class CardComponent {
       this.router.navigate(['/']);
     }
   }
+
+  gotoPayment(){
+    this.router.navigate(['/order-success', 1]);
+  }
 }
