@@ -44,7 +44,27 @@ export const routes: Routes = [
       {
         path: 'order-success/:id',
         loadComponent: () => import('./modules/order-success/order-success.component').then(m => m.OrderSuccessComponent)
-      }
+      },
+      {
+        path: 'privacy-policy',
+        loadComponent: () => import('./modules/privacy-policy/privacy-policy.component').then(m => m.PrivacyPolicyComponent),
+        title: 'Chính sách bảo mật | E-Commerce Store'
+      },
+      {
+        path: 'terms-of-service',
+        loadComponent: () => import('./modules/terms-of-service/terms-of-service.component').then(m => m.TermsOfServiceComponent),
+        title: 'Điều khoản dịch vụ | Desire Clothing'
+      },
+      {
+        path: 'size-guide',
+        loadComponent: () => import('./modules/choosing-size/choosing-size.component').then(m => m.ChoosingSizeComponent),
+        title: 'Hướng dẫn chọn Size | Desire Clothing'
+      },
+      {
+        path: 'return-policy',
+        loadComponent: () => import('./modules/return-policy/return-policy.component').then(m => m.ReturnPolicyComponent),
+        title: 'Chính sách đổi trả & Hoàn tiền | Desire Clothing'
+      },
     ]
   },
   { path: '**', redirectTo: '404' }

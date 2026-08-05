@@ -1,0 +1,254 @@
+<div class="size-guide-container py-5">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none text-muted">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Hướng dẫn chọn size</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+          <i class="bi bi-ruler me-1"></i> Bảng Size Chuẩn
+        </span>
+        <h1 class="fw-bold display-6 mb-3">Hướng Dẫn Chọn Kích Cỡ Tra Cứu Fast & Easy</h1>
+        <p class="text-secondary fs-6 mb-0">
+          Chọn đúng size trang phục giúp bạn luôn tự tin và thoải mái nhất. Hãy tham khảo bảng quy đổi và hướng dẫn lấy số đo dưới đây từ Desire Clothing.
+        </p>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-10">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+
+          <!-- Gender Switcher (Nam / Nữ) -->
+          <div class="d-flex justify-content-center mb-4">
+            <div class="bg-light p-1 rounded-pill border d-inline-flex gap-1">
+              <button 
+                type="button" 
+                class="btn rounded-pill px-4 fw-semibold border-0"
+                [class.btn-primary]="selectedGender() === 'men'"
+                [class.text-secondary]="selectedGender() !== 'men'"
+                (click)="setGender('men')">
+                <i class="bi bi-gender-male me-1"></i> Nam Giới
+              </button>
+              <button 
+                type="button" 
+                class="btn rounded-pill px-4 fw-semibold border-0"
+                [class.btn-primary]="selectedGender() === 'women'"
+                [class.text-secondary]="selectedGender() !== 'women'"
+                (click)="setGender('women')">
+                <i class="bi bi-gender-female me-1"></i> Nữ Giới
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Sub-tabs -->
+          <div class="d-flex justify-content-center gap-2 mb-4 border-bottom pb-3">
+            <button 
+              type="button" 
+              class="btn btn-sm rounded-3 px-3 fw-medium"
+              [class.btn-dark]="selectedCategory() === 'tops'"
+              [class.btn-outline-secondary]="selectedCategory() !== 'tops'"
+              (click)="setCategory('tops')">
+              <i class="bi bi-journal-text me-1"></i> Áo (Tops / Shirts)
+            </button>
+            <button 
+              type="button" 
+              class="btn btn-sm rounded-3 px-3 fw-medium"
+              [class.btn-dark]="selectedCategory() === 'bottoms'"
+              [class.btn-outline-secondary]="selectedCategory() !== 'bottoms'"
+              (click)="setCategory('bottoms')">
+              <i class="bi bi-layout-three-columns me-1"></i> Quần (Bottoms / Pants)
+            </button>
+
+            @if (selectedGender() === 'women') {
+              <button 
+                type="button" 
+                class="btn btn-sm rounded-3 px-3 fw-medium"
+                [class.btn-dark]="selectedCategory() === 'dresses'"
+                [class.btn-outline-secondary]="selectedCategory() !== 'dresses'"
+                (click)="setCategory('dresses')">
+                <i class="bi bi-stars me-1"></i> Đầm & Váy (Dresses)
+              </button>
+            }
+          </div>
+
+          <!-- Size Tables Area -->
+          <div class="table-responsive mb-5">
+            
+            <!-- 1. Nam - Áo -->
+            @if (selectedGender() === 'men' && selectedCategory() === 'tops') {
+              <table class="table table-hover align-middle text-center border">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Size</th>
+                    <th>Chiều cao</th>
+                    <th>Cân nặng</th>
+                    <th>Vòng ngực (cm)</th>
+                    <th>Rộng vai (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of menTops; track row.size) {
+                    <tr>
+                      <td class="fw-bold text-primary">{{ row.size }}</td>
+                      <td>{{ row.height }}</td>
+                      <td>{{ row.weight }}</td>
+                      <td>{{ row.chest }}</td>
+                      <td>{{ row.shoulder }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+
+            <!-- 2. Nam - Quần -->
+            @if (selectedGender() === 'men' && selectedCategory() === 'bottoms') {
+              <table class="table table-hover align-middle text-center border">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Size</th>
+                    <th>Chiều cao</th>
+                    <th>Cân nặng</th>
+                    <th>Vòng bụng/eo (cm)</th>
+                    <th>Vòng mông (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of menBottoms; track row.size) {
+                    <tr>
+                      <td class="fw-bold text-primary">{{ row.size }}</td>
+                      <td>{{ row.height }}</td>
+                      <td>{{ row.weight }}</td>
+                      <td>{{ row.waist }}</td>
+                      <td>{{ row.hips }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+
+            <!-- 3. Nữ - Áo -->
+            @if (selectedGender() === 'women' && selectedCategory() === 'tops') {
+              <table class="table table-hover align-middle text-center border">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Size</th>
+                    <th>Chiều cao</th>
+                    <th>Cân nặng</th>
+                    <th>Vòng ngực (cm)</th>
+                    <th>Vòng eo (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of womenTops; track row.size) {
+                    <tr>
+                      <td class="fw-bold text-primary">{{ row.size }}</td>
+                      <td>{{ row.height }}</td>
+                      <td>{{ row.weight }}</td>
+                      <td>{{ row.chest }}</td>
+                      <td>{{ row.waist }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+
+            <!-- 4. Nữ - Đầm & Váy -->
+            @if (selectedGender() === 'women' && selectedCategory() === 'dresses') {
+              <table class="table table-hover align-middle text-center border">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Size</th>
+                    <th>Chiều cao</th>
+                    <th>Cân nặng</th>
+                    <th>Vòng 1 (cm)</th>
+                    <th>Vòng 2 (cm)</th>
+                    <th>Vòng 3 (cm)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of womenDresses; track row.size) {
+                    <tr>
+                      <td class="fw-bold text-primary">{{ row.size }}</td>
+                      <td>{{ row.height }}</td>
+                      <td>{{ row.weight }}</td>
+                      <td>{{ row.chest }}</td>
+                      <td>{{ row.waist }}</td>
+                      <td>{{ row.hips }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
+
+          </div>
+
+          <!-- Note Tip Alert -->
+          <div class="alert alert-info border-0 rounded-3 d-flex gap-3 align-items-start mb-5">
+            <i class="bi bi-lightbulb-fill fs-3 text-info"></i>
+            <div class="small">
+              <strong>Mẹo chọn size chuẩn:</strong> Nếu số đo Chiều cao và Cân nặng của bạn thuộc 2 size khác nhau, hãy ưu tiên chọn theo <strong>Cân nặng</strong> hoặc liên hệ ngay bộ phận CSKH để được tư vấn phom dáng vừa vặn nhất!
+            </div>
+          </div>
+
+          <!-- Section: How to measure -->
+          <div class="how-to-measure mt-4">
+            <h3 class="h4 fw-bold mb-4 text-center">
+              <i class="bi bi-geo-alt text-primary me-2"></i>Hướng Dẫn Cách Lấy Số Đo Đúng Chuẩn
+            </h3>
+
+            <div class="row g-4">
+              <div class="col-md-6 col-lg-3">
+                <div class="measure-card p-3 border rounded-3 bg-light text-center h-100">
+                  <div class="icon-circle bg-primary-subtle text-primary mx-auto mb-3">
+                    <i class="bi bi-arrow-down-up fs-4"></i>
+                  </div>
+                  <h4 class="h6 fw-bold">1. Vòng Ngực (Chest)</h4>
+                  <p class="small text-secondary mb-0">Dùng thước dây quấn quanh phần nở nhất của ngực, giữ thước dây ngang bằng phẳng.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="measure-card p-3 border rounded-3 bg-light text-center h-100">
+                  <div class="icon-circle bg-success-subtle text-success mx-auto mb-3">
+                    <i class="bi bi-dash-circle fs-4"></i>
+                  </div>
+                  <h4 class="h6 fw-bold">2. Vòng Eo / Bụng (Waist)</h4>
+                  <p class="small text-secondary mb-0">Đo quanh phần eo nhỏ nhất (thường nằm trên rốn khoảng 2-3 cm).</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="measure-card p-3 border rounded-3 bg-light text-center h-100">
+                  <div class="icon-circle bg-warning-subtle text-warning mx-auto mb-3">
+                    <i class="bi bi-circle fs-4"></i>
+                  </div>
+                  <h4 class="h6 fw-bold">3. Vòng Mông (Hips)</h4>
+                  <p class="small text-secondary mb-0">Đứng thẳng khép chân, quấn thước dây qua điểm rộng nhất của mông.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-3">
+                <div class="measure-card p-3 border rounded-3 bg-light text-center h-100">
+                  <div class="icon-circle bg-danger-subtle text-danger mx-auto mb-3">
+                    <i class="bi bi-arrows-expand fs-4"></i>
+                  </div>
+                  <h4 class="h6 fw-bold">4. Rộng Vai (Shoulders)</h4>
+                  <p class="small text-secondary mb-0">Đo từ đỉnh khớp vai bên trái sang đỉnh khớp vai bên phải phía sau lưng.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

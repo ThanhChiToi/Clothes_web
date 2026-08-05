@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 interface Product {
@@ -93,4 +93,21 @@ export class ProductComponent {
       hoverImg: 'https://picsum.photos/id/106/600/800'
     }
   ];
+
+  selectedProduct = signal<any | null>(null);
+  selectedSize = signal<string>('M');
+
+  openQuickView(product: any) {
+    this.selectedProduct.set(product);
+  }
+
+  closeQuickView() {
+    this.selectedProduct.set(null);
+  }
+
+  addToCartFromModal(product: any) {
+    // Gọi ToastService thêm vào giỏ hàng với thông tin product + selectedSize()
+    console.log('Thêm vào giỏ:', product.name, this.selectedSize());
+    this.closeQuickView();
+  }
 }

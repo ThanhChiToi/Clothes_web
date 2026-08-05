@@ -55,16 +55,33 @@
             }
 
             <!-- Khung ảnh hiệu ứng Image Swap + Zoom -->
-            <div [routerLink]="['/products', product.id]" class="img-limit">
+            <div class="img-limit">
               <img [src]="product.primaryImg" [alt]="product.name" class="img-primary">
               <img [src]="product.hoverImg" [alt]="product.name + ' - Hover'" class="img-hover">
+                <div class="product-overlay">
+                    <button [routerLink]="['/products', product.id]"
+                    type="button" 
+                    class="action-btn"
+                    title="Xem nhanh">
+                    <i class="bi bi-eye fs-4"></i>
+                    <!-- <span>Xem nhanh</span> -->
+                    </button>
+
+                    <a 
+                    [routerLink]="['/products', product.id]" 
+                    class="action-btn" 
+                    title="Chi tiết sản phẩm">
+                    <i class="bi bi-cart2 fs-4"></i>
+                    <!-- <span>Chi tiết</span> -->
+                    </a>
+                </div>
             </div>
 
             <!-- Thông tin sản phẩm -->
-            <div class="card-body d-flex flex-column justify-content-between p-3">
+            <div [routerLink]="['/products', product.id]"  class="card-body d-flex flex-column justify-content-between p-3">
               <div>
                 <h3 class="card-title product-title text-truncate-2 fs-6 mb-2">
-                  <a href="#" class="text-decoration-none text-dark">{{ product.name }}</a>
+                  <a class="text-decoration-none text-dark">{{ product.name }}</a>
                 </h3>
               </div>
               
