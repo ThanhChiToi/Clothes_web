@@ -21,8 +21,8 @@
     "module": "ES2022",
     "customConditions": ["es2015", "default"],
     "paths": {
-      "rxjs": ["./node_modules/rxjs/dist/esm/index.js"],
-      "rxjs/*": ["./node_modules/rxjs/dist/esm/*"]
+      // "rxjs": ["./node_modules/rxjs/dist/esm/index.js"],
+      // "rxjs/*": ["./node_modules/rxjs/dist/esm/*"]
     },
     "lib": [
       "ES2022",

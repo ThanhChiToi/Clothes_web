@@ -56,8 +56,8 @@
 
             <!-- Khung ảnh hiệu ứng Image Swap + Zoom -->
             <div class="img-limit">
-              <img [src]="product.primaryImg" [alt]="product.name" class="img-primary">
-              <img [src]="product.hoverImg" [alt]="product.name + ' - Hover'" class="img-hover">
+              <img [src]="product.mainImage" [alt]="product.name" class="img-primary">
+              <img [src]="product.mainImage" [alt]="product.name + ' - Hover'" class="img-hover">
                 <div class="product-overlay">
                     <button [routerLink]="['/products', product.id]"
                     type="button" 
