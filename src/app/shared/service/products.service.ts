@@ -26,7 +26,11 @@ export class ProductsService {
     this.urlAPI = 'https://localhost:7195'
   }
 
-  getProduct(): Observable<Product[]>{
+  getProducts(): Observable<Product[]>{
     return this.http.get<Product[]>(this.urlAPI + '/api/Products')
+  }
+
+  getProduct(id : number): Observable<Product[]>{
+    return this.http.get<Product[]>(this.urlAPI + '/api/Products/'+ id)
   }
 }

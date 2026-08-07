@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../shared/service/toast.service';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../../../shared/service/products.service';
 
 interface ProductDetail {
   id: number;
@@ -24,9 +26,13 @@ interface ProductDetail {
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.scss'
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute)
   private toastService = inject(ToastService);
-  product: ProductDetail = {
+  private productService = inject(ProductsService)
+
+  id : number = 0;
+  product : any = {
     id: 101,
     name: 'Áo Polo Nam Marvel Spider-Man Edition',
     sku: 'POLO-SPIDER-2026',
@@ -55,6 +61,13 @@ export class ProductDetailComponent {
   selectedSize = 'M';
   quantity = 1;
 
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+    })
+    this.fetch_Product_Id(this.id);
+  }
+
   // Đổi ảnh chính khi hover hoặc click thumbnail
   selectImage(index: number): void {
     this.selectedImageIndex = index;
@@ -77,6 +90,14 @@ export class ProductDetailComponent {
       price: product.price || 450000,
       image: product.image || 'https://picsum.photos/id/1059/100/100'
     });
+  }
+
+  fetch_Product_Id(id : number): void{
+    this.productService.getProduct(id).subscribe({
+      next: (data : any) => {
+        this.product = data;
+      }
+    })
   }
 
 }

@@ -59,7 +59,7 @@
               <img [src]="product.mainImage" [alt]="product.name" class="img-primary">
               <img [src]="product.mainImage" [alt]="product.name + ' - Hover'" class="img-hover">
                 <div class="product-overlay">
-                    <button [routerLink]="['/products', product.id]"
+                    <button [routerLink]="['/products',product.slug, product.id]"
                     type="button" 
                     class="action-btn"
                     title="Xem nhanh">
@@ -68,7 +68,7 @@
                     </button>
 
                     <a 
-                    [routerLink]="['/products', product.id]" 
+                    [routerLink]="['/products',product.slug, product.id]"
                     class="action-btn" 
                     title="Chi tiết sản phẩm">
                     <i class="bi bi-cart2 fs-4"></i>

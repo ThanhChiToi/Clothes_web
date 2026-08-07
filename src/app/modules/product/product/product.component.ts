@@ -12,6 +12,8 @@ interface Product {
   hoverImg: string;
   isNew?: boolean;
   mainImage : string;
+  isActive: boolean;
+  slug : string;
 }
 
 @Component({
@@ -118,7 +120,7 @@ export class ProductComponent implements OnInit {
   }
 
   fetch_Products(): void{
-    this.productService.getProduct().subscribe({
+    this.productService.getProducts().subscribe({
       next: (data : any) => {
         this.products = data;
       }
