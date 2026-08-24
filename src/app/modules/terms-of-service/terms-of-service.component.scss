@@ -1,0 +1,48 @@
+.terms-container {
+  background-color: #f8fafc;
+  min-height: 100vh;
+
+  /* Sticky sidebar */
+  .sticky-sidebar {
+    position: sticky;
+    top: 90px;
+    z-index: 10;
+
+    .nav-link {
+      transition: all 0.2s ease;
+      font-size: 0.9rem;
+      font-weight: 500;
+
+      &:hover {
+        background-color: #f1f5f9 !important;
+        color: #0f172a !important;
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  /* Custom Icon Box Colors */
+  .icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+  }
+
+  .bg-purple-subtle {
+    background-color: #f3e8ff;
+  }
+  .text-purple {
+    color: #7e22ce;
+  }
+
+  .leading-relaxed {
+    line-height: 1.7;
+  }
+
+  /* Smooth scroll highlight focus */
+  .terms-section {
+    scroll-margin-top: 100px;
+  }
+}
