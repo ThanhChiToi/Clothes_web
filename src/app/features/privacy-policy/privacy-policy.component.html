@@ -1,0 +1,187 @@
+<div class="privacy-container py-5">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none text-muted">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Chính sách bảo mật</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+          <i class="bi bi-shield-check me-1"></i> An toàn & Bảo mật
+        </span>
+        <h1 class="fw-bold display-6 mb-3">Chính Sách Bảo Mật Quyền Riêng Tư</h1>
+        <p class="text-secondary fs-6">
+          Chúng tôi cam kết bảo vệ thông tin cá nhân và đảm bảo trải nghiệm mua sắm an toàn tuyệt đối cho bạn.
+        </p>
+        <div class="small text-muted">
+          <i class="bi bi-clock-history me-1"></i> Cập nhật lần cuối: <strong>{{ lastUpdated() }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Sticky Sidebar Menu -->
+      <div class="col-lg-4 col-xl-3">
+        <div class="sticky-sidebar card border-0 shadow-sm rounded-4 p-3">
+          <div class="fw-bold text-dark mb-3 px-2 d-flex align-items-center gap-2">
+            <i class="bi bi-list-nested text-primary fs-5"></i> Mục lục nội dung
+          </div>
+          <div class="nav flex-column nav-pills gap-1">
+            @for (sec of sections(); track sec.id) {
+              <button 
+                type="button" 
+                class="nav-link text-start text-secondary border-0 bg-transparent py-2 px-3 rounded-3"
+                (click)="scrollTo(sec.id)">
+                {{ sec.title }}
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Policy Content -->
+      <div class="col-lg-8 col-xl-9">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+          
+          <!-- Sec 1 -->
+          <section id="sec-1" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-primary-subtle text-primary rounded-3 p-2">
+                <i class="bi bi-person-vcard fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">1. Thu thập thông tin cá nhân</h2>
+            </div>
+            <p class="text-secondary leading-relaxed">
+              Chúng tôi thu thập các thông tin cần thiết khi bạn tạo tài khoản, đặt hàng hoặc tương tác trên website:
+            </p>
+            <ul class="text-secondary">
+              <li><strong>Thông tin định danh:</strong> Họ và tên, số điện thoại, địa chỉ email.</li>
+              <li><strong>Thông tin giao hàng:</strong> Địa chỉ nhận hàng, ghi chú giao hàng.</li>
+              <li><strong>Thông tin kỹ thuật:</strong> Địa chỉ IP, loại trình duyệt, thiết bị truy cập và cookies để tối ưu hóa trải nghiệm.</li>
+            </ul>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 2 -->
+          <section id="sec-2" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-success-subtle text-success rounded-3 p-2">
+                <i class="bi bi-gear-wide-connected fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">2. Mục đích sử dụng thông tin</h2>
+            </div>
+            <p class="text-secondary">Dữ liệu cá nhân của bạn chỉ được sử dụng cho các mục đích hợp pháp sau:</p>
+            <div class="row g-3 my-2">
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light h-100">
+                  <div class="fw-semibold text-dark mb-1"><i class="bi bi-truck text-primary me-2"></i>Xử lý đơn hàng</div>
+                  <div class="small text-secondary">Xác nhận đơn, đóng gói và vận chuyển đến đúng địa chỉ của bạn.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light h-100">
+                  <div class="fw-semibold text-dark mb-1"><i class="bi bi-bell text-primary me-2"></i>Thông báo cập nhật</div>
+                  <div class="small text-secondary">Cập nhật trạng thái đơn hàng, mã vận đơn và xác nhận thanh toán.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 3 -->
+          <section id="sec-3" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-warning-subtle text-warning rounded-3 p-2">
+                <i class="bi bi-qr-code-scan fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">3. Bảo mật thanh toán & VietQR</h2>
+            </div>
+            <p class="text-secondary">
+              Chúng tôi đề cao tính an toàn trong mọi giao dịch tài chính:
+            </p>
+            <div class="alert alert-info border-0 rounded-3 d-flex gap-3 align-items-start">
+              <i class="bi bi-shield-lock-fill fs-3 text-info"></i>
+              <div class="small">
+                <strong>Không lưu trữ thẻ/Tài khoản ngân hàng:</strong> Khi thanh toán chuyển khoản qua mã <strong>VietQR</strong>, bạn thao tác trực tiếp trên ứng dụng ngân hàng chính thức của bạn. Hệ thống của chúng tôi chỉ nhận mã xác nhận giao dịch thành công từ Cổng thanh toán, hoàn toàn không lưu thông tin thẻ hay mật khẩu ngân hàng.
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 4 -->
+          <section id="sec-4" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-danger-subtle text-danger rounded-3 p-2">
+                <i class="bi bi-share fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">4. Chia sẻ thông tin với bên thứ ba</h2>
+            </div>
+            <p class="text-secondary">
+              Chúng tôi <strong>tuyệt đối không bán, cho thuê hoặc chia sẻ</strong> thông tin cá nhân của bạn cho bên thứ ba vì mục đích thương mại. Thông tin chỉ được cung cấp cho:
+            </p>
+            <ul class="text-secondary">
+              <li><strong>Đối tác vận chuyển:</strong> Chỉ chia sẻ Tên, SĐT và Địa chỉ để thực hiện giao hàng.</li>
+              <li><strong>Cơ quan pháp luật:</strong> Khi có yêu cầu chính thức bằng văn bản theo đúng quy định pháp luật Việt Nam.</li>
+            </ul>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 5 -->
+          <section id="sec-5" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-purple-subtle text-purple rounded-3 p-2">
+                <i class="bi bi-sliders fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">5. Quyền hạn của khách hàng</h2>
+            </div>
+            <p class="text-secondary">Bạn hoàn toàn có các quyền sau đối với dữ liệu cá nhân của mình:</p>
+            <div class="d-flex flex-column gap-2 text-secondary">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i> Quyền xem và chỉnh sửa thông tin tài khoản bất kỳ lúc nào.
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i> Quyền yêu cầu xóa bỏ toàn bộ dữ liệu cá nhân khỏi hệ thống.
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-check-circle-fill text-success"></i> Quyền từ chối nhận email quảng cáo/marketing.
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 6 -->
+          <section id="sec-6" class="policy-section">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-dark-subtle text-dark rounded-3 p-2">
+                <i class="bi bi-envelope-at fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">6. Thông tin liên hệ</h2>
+            </div>
+            <p class="text-secondary">Mọi thắc mắc hoặc yêu cầu liên quan đến chính sách bảo mật, vui lòng liên hệ:</p>
+            <div class="p-3 bg-light rounded-3 border">
+              <div class="row g-2">
+                <div class="col-sm-6">
+                  <i class="bi bi-envelope text-primary me-2"></i>Email: <strong>support&#64;yourdomain.com</strong>
+                </div>
+                <div class="col-sm-6">
+                  <i class="bi bi-telephone text-primary me-2"></i>Hotline: <strong>1900 xxxx</strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

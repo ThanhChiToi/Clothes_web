@@ -1,0 +1,235 @@
+<div class="return-policy-container py-5">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none text-muted">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Chính sách đổi trả</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+          <i class="bi bi-arrow-counterclockwise me-1"></i> Đổi trả an tâm
+        </span>
+        <h1 class="fw-bold display-6 mb-3">Chính Sách Đổi Trả & Hoàn Tiền</h1>
+        <p class="text-secondary fs-6">
+          Desire Clothing cam kết mang đến trải nghiệm mua sắm hài lòng nhất. Nếu sản phẩm không vừa size hoặc có lỗi từ nhà sản xuất, chúng tôi sẵn sàng hỗ trợ bạn đổi trả nhanh chóng.
+        </p>
+        <div class="small text-muted">
+          <i class="bi bi-clock-history me-1"></i> Cập nhật lần cuối: <strong>{{ lastUpdated() }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Sticky Sidebar Menu -->
+      <div class="col-lg-4 col-xl-3">
+        <div class="sticky-sidebar card border-0 shadow-sm rounded-4 p-3">
+          <div class="fw-bold text-dark mb-3 px-2 d-flex align-items-center gap-2">
+            <i class="bi bi-list-nested text-primary fs-5"></i> Mục lục nội dung
+          </div>
+          <div class="nav flex-column nav-pills gap-1">
+            @for (sec of sections(); track sec.id) {
+              <button 
+                type="button" 
+                class="nav-link text-start text-secondary border-0 bg-transparent py-2 px-3 rounded-3"
+                (click)="scrollTo(sec.id)">
+                {{ sec.title }}
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Policy Content -->
+      <div class="col-lg-8 col-xl-9">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+          
+          <!-- Key Highlights Card -->
+          <div class="row g-3 mb-5">
+            <div class="col-md-4">
+              <div class="p-3 border rounded-3 bg-light text-center h-100">
+                <i class="bi bi-calendar-check text-primary fs-3 mb-2 d-block"></i>
+                <div class="fw-bold text-dark">07 Ngày Đổi Trả</div>
+                <div class="small text-secondary">Tính từ thời điểm nhận hàng thành công.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 border rounded-3 bg-light text-center h-100">
+                <i class="bi bi-tags text-success fs-3 mb-2 d-block"></i>
+                <div class="fw-bold text-dark">Nguyên Tem Mác</div>
+                <div class="small text-secondary">Chưa qua sử dụng & chưa qua giặt tẩy.</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 border rounded-3 bg-light text-center h-100">
+                <i class="bi bi-truck text-warning fs-3 mb-2 d-block"></i>
+                <div class="fw-bold text-dark">Hỗ Trợ Tận Nơi</div>
+                <div class="small text-secondary">Shipper đến tận nhà thu hồi hàng đổi.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sec 1 -->
+          <section id="sec-1" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-primary-subtle text-primary rounded-3 p-2">
+                <i class="bi bi-clock-history fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">1. Thời gian & Điều kiện đổi trả</h2>
+            </div>
+            <ul class="text-secondary leading-relaxed">
+              <li><strong>Thời gian áp dụng:</strong> Trong vòng <strong>07 ngày</strong> kể từ khi đơn hàng được giao thành công.</li>
+              <li><strong>Tình trạng sản phẩm:</strong> Sản phẩm còn nguyên tem, mác, phụ kiện đi kèm (nếu có) và hóa đơn mua hàng.</li>
+              <li>Sản phẩm chưa qua sử dụng, chưa qua giặt tẩy, không bị bẩn, hư hỏng hoặc có mùi lạ (nước hoa, cơ thể...).</li>
+            </ul>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 2 -->
+          <section id="sec-2" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-success-subtle text-success rounded-3 p-2">
+                <i class="bi bi-check2-circle fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">2. Các trường hợp chấp nhận & Từ chối</h2>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 border border-success-subtle bg-success-subtle bg-opacity-10 rounded-3 h-100">
+                  <h3 class="h6 fw-bold text-success mb-3"><i class="bi bi-check-circle-fill me-2"></i>Trường hợp CHẤP NHẬN</h3>
+                  <ul class="small text-secondary mb-0 ps-3">
+                    <li class="mb-2">Sản phẩm bị lỗi từ nhà sản xuất (rách chỉ, lỗi vải, hỏng khóa kéo...).</li>
+                    <li class="mb-2">Desire Clothing giao lộn size, sai màu hoặc sai mẫu so với đơn đặt.</li>
+                    <li>Khách hàng mặc không vừa size và muốn đổi sang size khác hoặc mẫu khác có giá trị tương đương/cao hơn.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="p-3 border border-danger-subtle bg-danger-subtle bg-opacity-10 rounded-3 h-100">
+                  <h3 class="h6 fw-bold text-danger mb-3"><i class="bi bi-x-circle-fill me-2"></i>Trường hợp TỪ CHỐI</h3>
+                  <ul class="small text-secondary mb-0 ps-3">
+                    <li class="mb-2">Quá 07 ngày kể từ khi nhận hàng thành công.</li>
+                    <li class="mb-2">Sản phẩm đã qua sử dụng, đã giặt tẩy hoặc bị hư hỏng do tác động từ phía người dùng.</li>
+                    <li>Sản phẩm thuộc chương trình Xả hàng / Sale off từ 50% trở lên (Trừ trường hợp lỗi từ shop).</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 3: 4 Steps -->
+          <section id="sec-3" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-4">
+              <div class="icon-box bg-warning-subtle text-warning rounded-3 p-2">
+                <i class="bi bi-diagram-3 fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">3. Quy trình 4 bước đổi trả đơn giản</h2>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="d-flex gap-3 p-3 border rounded-3 bg-light h-100">
+                  <div class="step-num bg-primary text-white rounded-circle fw-bold flex-shrink-0">1</div>
+                  <div>
+                    <div class="fw-bold text-dark mb-1">Liên hệ CSKH</div>
+                    <div class="small text-secondary">Gửi hình ảnh/video sản phẩm cần đổi qua Hotline/Zalo hoặc Email hỗ trợ.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex gap-3 p-3 border rounded-3 bg-light h-100">
+                  <div class="step-num bg-primary text-white rounded-circle fw-bold flex-shrink-0">2</div>
+                  <div>
+                    <div class="fw-bold text-dark mb-1">Xác nhận yêu cầu</div>
+                    <div class="small text-secondary">Chuyên viên hỗ trợ sẽ kiểm tra điều kiện và xác nhận phương án đổi hàng trong vòng 24h.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex gap-3 p-3 border rounded-3 bg-light h-100">
+                  <div class="step-num bg-primary text-white rounded-circle fw-bold flex-shrink-0">3</div>
+                  <div>
+                    <div class="fw-bold text-dark mb-1">Gửi lại sản phẩm</div>
+                    <div class="small text-secondary">Đóng gói sản phẩm. Shipper đối tác sẽ đến thu hồi gói hàng cũ tận nhà bạn.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="d-flex gap-3 p-3 border rounded-3 bg-light h-100">
+                  <div class="step-num bg-primary text-white rounded-circle fw-bold flex-shrink-0">4</div>
+                  <div>
+                    <div class="fw-bold text-dark mb-1">Nhận sản phẩm mới</div>
+                    <div class="small text-secondary">Ngay khi kiểm tra hàng thu hồi, Desire Clothing sẽ gửi lại sản phẩm mới cho bạn.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 4 -->
+          <section id="sec-4" class="policy-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-info-subtle text-info rounded-3 p-2">
+                <i class="bi bi-cash-coin fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">4. Biểu phí vận chuyển khi đổi trả</h2>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered align-middle text-center mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Lý do đổi trả</th>
+                    <th>Phí thu hồi & Gửi mới</th>
+                  </tr>
+                </thead>
+                <tbody class="small">
+                  <tr>
+                    <td class="text-start">Sản phẩm bị lỗi sản xuất / Giao sai mẫu, sai size</td>
+                    <td class="fw-bold text-success">Miễn phí 100% (Desire Clothing chi trả)</td>
+                  </tr>
+                  <tr>
+                    <td class="text-start">Khách hàng đổi size / Đổi sang mẫu khác (Theo nhu cầu)</td>
+                    <td class="text-secondary">Khách hàng thanh toán phí ship 2 chiều (Khoảng 30k - 45k)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 5 -->
+          <section id="sec-5" class="policy-section">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-purple-subtle text-purple rounded-3 p-2">
+                <i class="bi bi-wallet2 fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">5. Chính sách & Thời gian hoàn tiền</h2>
+            </div>
+            <p class="text-secondary">Trong trường hợp sản phẩm không còn size/mẫu thay thế hoặc khách hàng có yêu cầu hoàn tiền do lỗi từ Desire Clothing:</p>
+            <ul class="text-secondary">
+              <li><strong>Hình thức hoàn tiền:</strong> Chuyển khoản trực tiếp qua tài khoản Ngân hàng do khách hàng cung cấp.</li>
+              <li><strong>Thời gian xử lý:</strong> Từ <strong>1 - 3 ngày làm việc</strong> sau khi kho Desire Clothing nhận và kiểm tra xong sản phẩm hoàn trả.</li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

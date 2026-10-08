@@ -1,0 +1,112 @@
+<section
+  class="banner-carousel"
+  (mouseenter)="stopAutoSlide()"
+  (mouseleave)="startAutoSlide()"
+>
+  <!-- Thùng chứa toàn bộ Slide dạng cuộn ngang -->
+  <div
+    class="slides-wrapper"
+    [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+  >
+    <div *ngFor="let slide of slides" class="slide-item">
+      <div class="banner-overlay"></div>
+      <img [src]="slide.image" [alt]="slide.title" class="banner-image" />
+
+      <!-- <div class="banner-container">
+        <div class="banner-content">
+          <span class="badge">{{ slide.badge }}</span>
+          <h1 class="title">{{ slide.title }}</h1>
+          <p class="subtitle">{{ slide.subtitle }}</p>
+          <div class="cta-group">
+            <a [href]="slide.link" class="btn btn-primary">Mua Ngay</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- 4 Chấm tròn điều hướng (Pagination Dots) -->
+  <div class="dots-container">
+    <button
+      *ngFor="let slide of slides; let i = index"
+      class="dot"
+      [ngClass]="{ active: i === currentIndex }"
+      (click)="goToSlide(i)"
+      [attr.aria-label]="'Chuyển đến slide ' + (i + 1)"
+    ></button>
+  </div>
+</section>
+<div class="container py-4 mt-4">
+  <div
+    class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 align-items-center"
+  >
+    <!-- Mục 1 -->
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="flex-shrink-0">
+          <!-- Thay src bằng icon SVG/Ảnh của bạn -->
+          <img
+            src="assets/images/icon/Gemini_Generated_Image_etc1isetc1isetc1.png"
+            alt="Shipping"
+            style="width: 48px; height: 48px; border-radius: 50%"
+          />
+        </div>
+        <div>
+          <h6 class="fw-bold mb-0 text-dark">Miễn phí vận chuyển</h6>
+          <small class="text-secondary">đơn từ 399K</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mục 2 -->
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="flex-shrink-0">
+          <img
+            src="assets/images/icon/Gemini_Generated_Image_j864f7j864f7j864.png"
+            alt="Return"
+            style="width: 48px; height: 48px; border-radius: 50%"
+          />
+        </div>
+        <div>
+          <h6 class="fw-bold mb-0 text-dark">Đổi hàng tận nhà</h6>
+          <small class="text-secondary">Trong vòng 15 ngày</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mục 3 -->
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="flex-shrink-0">
+          <img
+            src="assets/images/icon/Gemini_Generated_Image_uva7htuva7htuva7.png"
+            alt="COD"
+            style="width: 48px; height: 48px; border-radius: 50%"
+          />
+        </div>
+        <div>
+          <h6 class="fw-bold mb-0 text-dark">Thanh toán COD</h6>
+          <small class="text-secondary">Yên tâm mua sắm</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mục 4 -->
+    <div class="col">
+      <div class="d-flex align-items-center gap-3">
+        <div class="flex-shrink-0">
+          <img
+            src="assets/images/icon/Gemini_Generated_Image_8muimi8muimi8mui.png"
+            alt="Hotline"
+            style="width: 48px; height: 48px; border-radius: 50%"
+          />
+        </div>
+        <div>
+          <h6 class="fw-bold mb-0 text-dark">Hotline: 028.73066.060</h6>
+          <small class="text-secondary">Hỗ trợ bạn từ 8h30-24h00</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

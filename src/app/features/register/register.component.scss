@@ -1,0 +1,263 @@
+/* Bổ sung thêm cho trang Register */
+// Biến màu sắc theo đúng UI của bạn
+$primary-color: #1b3865; 
+$text-main: #1f2937;
+$text-muted: #6b7280;
+$border-color: #e5e7eb;
+$danger-color: #dc2626;
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 40px 20px;
+  background-color: #f9fafb; // Nền xám nhạt làm nổi bật card
+}
+
+.auth-card {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 900px; // Kích thước form to rộng rãi giống trang Liên hệ
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+
+  // Responsive cho điện thoại
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+/* KHỐI BÊN TRÁI - BANNER */
+.auth-banner {
+  flex: 0 0 40%;
+  background-color: $primary-color; // Màu chủ đề #1b3865
+  color: #ffffff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+/* KHỐI BÊN PHẢI - FORM */
+.auth-form-wrapper {
+  flex: 1;
+  padding: 40px 50px;
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+  }
+
+  .form-header {
+    margin-bottom: 24px;
+    
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: $text-main;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      color: $text-muted;
+    }
+  }
+
+  /* Nút Google */
+  .btn-google {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: $text-main;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: #f3f4f6;
+    }
+  }
+
+  /* Đường kẻ hoặc */
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+
+    &::before, &::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid $border-color;
+    }
+
+    span {
+      padding: 0 15px;
+      color: $text-muted;
+      font-size: 13px;
+    }
+  }
+
+  /* Form Group y hệt trang Liên Hệ */
+  .form-group {
+    margin-bottom: 16px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: $text-main;
+      margin-bottom: 8px;
+
+      .required {
+        color: $danger-color; // Dấu * màu đỏ
+      }
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      font-size: 14px;
+      color: $text-main;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+
+      &::placeholder {
+        color: #9ca3af;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+
+      &.is-invalid {
+        border-color: $danger-color;
+      }
+    }
+
+    .error-text {
+      color: $danger-color;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+  }
+
+  .form-actions {
+    text-align: right;
+    margin-bottom: 24px;
+
+    .forgot-link {
+      font-size: 13px;
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  /* Nút Submit chính */
+  .btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: $primary-color; // Sử dụng màu #1b3865
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.2s;
+
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      background-color: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+    }
+  }
+
+  /* Link đăng ký */
+  .register-link {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: $text-muted;
+
+    a {
+      color: $primary-color;
+      font-weight: 600;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  
+  .half-width {
+    flex: 1;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.mt-3 {
+  margin-top: 24px;
+}

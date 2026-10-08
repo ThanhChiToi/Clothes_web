@@ -1,0 +1,190 @@
+<div class="terms-container py-5">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none text-muted">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Điều khoản dịch vụ</li>
+      </ol>
+    </nav>
+
+    <!-- Header Section -->
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-3">
+          <i class="bi bi-file-earmark-text me-1"></i> Pháp lý & Quy định
+        </span>
+        <h1 class="fw-bold display-6 mb-3">Điều Khoản Dịch Vụ</h1>
+        <p class="text-secondary fs-6">
+          Chào mừng bạn đến với Desire Clothing. Việc bạn truy cập và sử dụng dịch vụ trên website đồng nghĩa với việc bạn chấp thuận các quy định dưới đây.
+        </p>
+        <div class="small text-muted">
+          <i class="bi bi-clock-history me-1"></i> Cập nhật lần cuối: <strong>{{ lastUpdated() }}</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Sticky Sidebar Menu -->
+      <div class="col-lg-4 col-xl-3">
+        <div class="sticky-sidebar card border-0 shadow-sm rounded-4 p-3">
+          <div class="fw-bold text-dark mb-3 px-2 d-flex align-items-center gap-2">
+            <i class="bi bi-list-nested text-primary fs-5"></i> Mục lục điều khoản
+          </div>
+          <div class="nav flex-column nav-pills gap-1">
+            @for (sec of sections(); track sec.id) {
+              <button 
+                type="button" 
+                class="nav-link text-start text-secondary border-0 bg-transparent py-2 px-3 rounded-3"
+                (click)="scrollTo(sec.id)">
+                {{ sec.title }}
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms Content -->
+      <div class="col-lg-8 col-xl-9">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+          
+          <!-- Sec 1 -->
+          <section id="sec-1" class="terms-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-primary-subtle text-primary rounded-3 p-2">
+                <i class="bi bi-person-badge fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">1. Quy định tài khoản & Sử dụng</h2>
+            </div>
+            <p class="text-secondary leading-relaxed">
+              Khi đăng ký tài khoản hoặc thực hiện giao dịch tại Desire Clothing, người dùng cần tuân thủ các quy định sau:
+            </p>
+            <ul class="text-secondary">
+              <li>Người dùng phải cung cấp thông tin chính xác, đầy đủ về Tên, Số điện thoại và Địa chỉ giao hàng.</li>
+              <li>Bạn có trách nhiệm tự bảo mật tài khoản và mật khẩu của mình. Desire Clothing không chịu trách nhiệm cho các tổn thất phát sinh từ việc tài khoản bị truy cập trái phép do sơ suất của khách hàng.</li>
+              <li>Nghiêm cấm các hành vi gian lận, can thiệp vào hệ thống hoặc sử dụng công cụ tự động để gây ảnh hưởng đến hoạt động của website.</li>
+            </ul>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 2 -->
+          <section id="sec-2" class="terms-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-success-subtle text-success rounded-3 p-2">
+                <i class="bi bi-bag-check fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">2. Đặt hàng & Xác nhận đơn</h2>
+            </div>
+            <p class="text-secondary">Quy trình xử lý và xác nhận đơn hàng tại Desire Clothing:</p>
+            <div class="row g-3 my-2">
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light h-100">
+                  <div class="fw-semibold text-dark mb-1"><i class="bi bi-check-circle text-success me-2"></i>Tạo đơn thành công</div>
+                  <div class="small text-secondary">Sau khi hoàn tất đặt hàng, bạn sẽ nhận được thông báo qua Toast/Email cùng mã đơn hàng để tra cứu.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 border rounded-3 bg-light h-100">
+                  <div class="fw-semibold text-dark mb-1"><i class="bi bi-x-circle text-danger me-2"></i>Hủy đơn từ hệ thống</div>
+                  <div class="small text-secondary">Chúng tôi có quyền từ chối hoặc hủy đơn trong trường hợp sản phẩm hết hàng hoặc phát hiện sai sót về giá niêm yết.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 3 -->
+          <section id="sec-3" class="terms-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-warning-subtle text-warning rounded-3 p-2">
+                <i class="bi bi-credit-card fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">3. Giá cả & Phương thức thanh toán</h2>
+            </div>
+            <p class="text-secondary">
+              Tất cả giá sản phẩm trên website đều được niêm yết bằng Việt Nam Đồng (VNĐ) và đã bao gồm thuế VAT (nếu có).
+            </p>
+            <p class="text-secondary mb-2">Desire Clothing hỗ trợ các hình thức thanh toán sau:</p>
+            <div class="d-flex flex-column gap-2 text-secondary ms-2">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-cash-stack text-success fs-5"></i> <strong>Thanh toán khi nhận hàng (COD):</strong> Áp dụng cho toàn quốc.
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-qr-code-scan text-primary fs-5"></i> <strong>Chuyển khoản VietQR:</strong> Quét mã QR thanh toán nhanh chóng, an toàn qua ứng dụng Ngân hàng.
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 4 -->
+          <section id="sec-4" class="terms-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-info-subtle text-info rounded-3 p-2">
+                <i class="bi bi-truck fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">4. Chính sách giao hàng & Vận chuyển</h2>
+            </div>
+            <p class="text-secondary">Thời gian và quy trình giao hàng:</p>
+            <ul class="text-secondary">
+              <li><strong>Nội thành TP.HCM:</strong> Từ 1 - 2 ngày làm việc.</li>
+              <li><strong>Các tỉnh thành khác:</strong> Từ 3 - 5 ngày làm việc.</li>
+              <li>Khách hàng được quyền kiểm tra hàng trước khi thanh toán đối với hình thức COD.</li>
+            </ul>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 5 -->
+          <section id="sec-5" class="terms-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-danger-subtle text-danger rounded-3 p-2">
+                <i class="bi bi-arrow-counterclockwise fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">5. Chính sách đổi trả & Hoàn tiền</h2>
+            </div>
+            <div class="alert alert-warning border-0 rounded-3 d-flex gap-3 align-items-start">
+              <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
+              <div class="small">
+                <strong>Điều kiện đổi trả:</strong> Hỗ trợ đổi trả trong vòng <strong>07 ngày</strong> kể từ khi nhận hàng nếu sản phẩm còn nguyên tem mác, chưa qua sử dụng/giặt tẩy và bị lỗi do nhà sản xuất hoặc giao sai size/mẫu.
+              </div>
+            </div>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 6 -->
+          <section id="sec-6" class="terms-section mb-5">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-purple-subtle text-purple rounded-3 p-2">
+                <i class="bi bi-c-circle fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">6. Quyền sở hữu trí tuệ</h2>
+            </div>
+            <p class="text-secondary">
+              Toàn bộ nội dung trên website bao gồm hình ảnh bộ sưu tập, logo Desire Clothing, thiết kế giao diện, đoạn văn mô tả và tài nguyên đồ họa đều thuộc bản quyền của Desire Clothing. Nghiêm cấm sao chép, thương mại hóa mà không có sự đồng ý bằng văn bản.
+            </p>
+          </section>
+
+          <hr class="my-4 opacity-10" />
+
+          <!-- Sec 7 -->
+          <section id="sec-7" class="terms-section">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="icon-box bg-dark-subtle text-dark rounded-3 p-2">
+                <i class="bi bi-shield-exclamation fs-4"></i>
+              </div>
+              <h2 class="h4 fw-bold mb-0">7. Giới hạn trách nhiệm & Điều khoản chung</h2>
+            </div>
+            <p class="text-secondary">
+              Desire Clothing có quyền thay đổi, cập nhật các điều khoản này bất kỳ lúc nào để phù hợp với hoạt động kinh doanh và pháp luật Việt Nam. Các thay đổi sẽ có hiệu lực ngay khi đăng tải trên website.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

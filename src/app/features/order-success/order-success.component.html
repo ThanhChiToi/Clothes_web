@@ -1,0 +1,119 @@
+<div class="order-success-page py-4 bg-light min-vh-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                @if (paymentMethod === 'bank' && successPayment || paymentMethod == 'cod') {
+                <!-- THÔNG BÁO ĐẶT HÀNG THÀNH CÔNG -->
+                <div class="bg-white rounded-4 p-4 p-md-5 border shadow-sm text-center mb-4">
+                    <div
+                        class="success-icon-box rounded-circle mx-auto mb-3 text-success d-flex align-items-center justify-content-center">
+                        <i class="bi bi-check-circle-fill display-4"></i>
+                    </div>
+                    <h3 class="fw-bold mb-1">Cảm ơn bạn đã đặt hàng!</h3>
+                    <p class="text-muted small mb-3">Mã đơn hàng của bạn là: <strong class="text-dark">{{ orderId
+                            }}</strong></p>
+
+                    <div class="badge bg-success-subtle text-success px-3 py-2 rounded-pill small">
+                        <i class="bi bi-clock me-1"></i>Đơn hàng đã được ghi nhận trên hệ thống
+                    </div>
+                </div>
+                }
+
+                <!-- KHU VỰC THANH TOÁN QR CODE (HIỂN THỊ KHI CHỌN CHUYỂN KHOẢN) -->
+                @if (paymentMethod === 'bank') {
+                <div class="bg-white rounded-4 p-4 p-md-5 border shadow-sm mb-4">
+
+                    <div class="text-center mb-4 pb-3 border-bottom">
+                        <span class="badge bg-danger-subtle text-danger px-3 py-1.5 rounded-pill mb-2 fw-semibold">
+                            Thời gian giữ hàng còn: {{ formattedTime }}
+                        </span>
+                        <h4 class="fw-bold fs-5 mb-1">Quét Mã QR Để Thanh Toán</h4>
+                        <p class="text-muted small mb-0">Mở ứng dụng Ngân hàng hoặc Ví điện tử bất kỳ để quét mã bên
+                            dưới</p>
+                    </div>
+
+                    <div class="row align-items-center g-4">
+
+                        <!-- Ảnh QR Code động -->
+                        <div class="col-md-5 text-center">
+                            <div class="qr-code-box p-3 border rounded-4 bg-white d-inline-block shadow-sm">
+                                <img [src]="vietQrUrl" alt="Mã VietQR Thanh Toán" class="img-fluid rounded-3"
+                                    style="max-width: 220px;">
+                            </div>
+                            <p class="text-muted fs-7 mt-2 mb-0"><i class="bi bi-qr-code-scan me-1"></i>Tự động điền số
+                                tiền & nội dung</p>
+                        </div>
+
+                        <!-- Thông tin chuyển khoản thủ công -->
+                        <div class="col-md-7">
+                            <div class="p-3 bg-light rounded-3 d-flex flex-column gap-2 small">
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted">Ngân hàng:</span>
+                                    <span class="fw-bold text-dark">{{ bankInfo.bankName }}</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted">Số tài khoản:</span>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="fw-bold text-dark font-monospace fs-6">{{ bankInfo.accountNo
+                                            }}</span>
+                                        <button class="btn btn-sm btn-light border p-1"
+                                            (click)="copyToClipboard(bankInfo.accountNo)" title="Copy STK">
+                                            <i class="bi bi-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted">Chủ tài khoản:</span>
+                                    <span class="fw-bold text-dark text-uppercase">{{ bankInfo.accountName }}</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+                                    <span class="text-muted">Số tiền:</span>
+                                    <span class="fw-bold text-danger fs-6">{{ totalAmount | number:'1.0-0' }}đ</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center pt-1">
+                                    <span class="text-muted">Nội dung CK:</span>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span
+                                            class="badge bg-warning-subtle text-dark border font-monospace fs-6 px-2 py-1">{{
+                                            bankInfo.transferContent }}</span>
+                                        <button class="btn btn-sm btn-light border p-1"
+                                            (click)="copyToClipboard(bankInfo.transferContent)" title="Copy Nội dung">
+                                            <i class="bi bi-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="alert alert-warning mb-0 mt-3 p-2-5 fs-7 d-flex align-items-start gap-2">
+                                <i class="bi bi-exclamation-triangle-fill text-warning flex-shrink-0 fs-6"></i>
+                                <span>Vui lòng giữ nguyên <strong>Nội dung chuyển khoản</strong> để hệ thống tự động
+                                    duyệt đơn ngay lập tức.</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                }
+
+                <!-- HÀNH ĐỘNG TIẾP THEO -->
+                <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <a routerLink="/profile" class="btn btn-outline-dark px-4 py-2-5 rounded-3 fw-semibold">
+                        <i class="bi bi-bag-check me-2"></i>Xem đơn hàng của tôi
+                    </a>
+                    <a routerLink="/products" class="btn btn-primary-custom px-4 py-2-5 rounded-3 fw-bold">
+                        <i class="bi bi-arrow-right me-2"></i>Tiếp tục mua sắm
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

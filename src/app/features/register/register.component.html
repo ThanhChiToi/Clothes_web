@@ -1,0 +1,98 @@
+<div class="auth-page">
+  <div class="auth-card">
+    
+    <!-- Cột trái: Banner Đăng ký -->
+    <div class="auth-banner">
+      <h2>Trở thành thành viên</h2>
+      <p>Tạo tài khoản Grausam ngay hôm nay để trải nghiệm mua sắm tiện lợi, lưu trữ giỏ hàng, và nhận các thông báo khuyến mãi sớm nhất.</p>
+    </div>
+
+    <!-- Cột phải: Form Đăng ký -->
+    <div class="auth-form-wrapper">
+      <div class="form-header">
+        <h3>Tạo Tài Khoản Mới</h3>
+        <p>Điền thông tin của bạn vào form bên dưới.</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        
+        <!-- Input Họ và tên -->
+        <div class="form-group">
+          <label>Họ và tên <span class="required">*</span></label>
+          <input 
+            type="text" 
+            formControlName="fullName" 
+            placeholder="Ví dụ: Nguyễn Văn A"
+            [ngClass]="{ 'is-invalid': isSubmitted && f['fullName'].errors }"
+          >
+          <div class="error-text" *ngIf="isSubmitted && f['fullName'].errors?.['required']">
+            Vui lòng nhập họ và tên.
+          </div>
+        </div>
+
+        <!-- Input Email -->
+        <div class="form-group">
+          <label>Email <span class="required">*</span></label>
+          <input 
+            type="email" 
+            formControlName="email" 
+            placeholder="name@example.com"
+            [ngClass]="{ 'is-invalid': isSubmitted && f['email'].errors }"
+          >
+          <div class="error-text" *ngIf="isSubmitted && f['email'].errors?.['required']">
+            Vui lòng nhập email.
+          </div>
+          <div class="error-text" *ngIf="isSubmitted && f['email'].errors?.['email']">
+            Email không đúng định dạng.
+          </div>
+        </div>
+
+        <!-- Layout 2 cột cho Mật khẩu (chia đôi trên Desktop, gộp lại trên Mobile) -->
+        <div class="form-row">
+          <!-- Input Password -->
+          <div class="form-group half-width">
+            <label>Mật khẩu <span class="required">*</span></label>
+            <input 
+              type="password" 
+              formControlName="password" 
+              placeholder="Tối thiểu 6 ký tự"
+              [ngClass]="{ 'is-invalid': isSubmitted && f['password'].errors }"
+            >
+            <div class="error-text" *ngIf="isSubmitted && f['password'].errors?.['required']">
+              Vui lòng nhập mật khẩu.
+            </div>
+            <div class="error-text" *ngIf="isSubmitted && f['password'].errors?.['minlength']">
+              Tối thiểu 6 ký tự.
+            </div>
+          </div>
+
+          <!-- Input Xác nhận Password -->
+          <div class="form-group half-width">
+            <label>Xác nhận mật khẩu <span class="required">*</span></label>
+            <input 
+              type="password" 
+              formControlName="confirmPassword" 
+              placeholder="Nhập lại mật khẩu"
+              [ngClass]="{ 'is-invalid': isSubmitted && f['confirmPassword'].errors }"
+            >
+            <div class="error-text" *ngIf="isSubmitted && f['confirmPassword'].errors?.['required']">
+              Vui lòng xác nhận mật khẩu.
+            </div>
+            <div class="error-text" *ngIf="isSubmitted && f['confirmPassword'].errors?.['mismatch']">
+              Mật khẩu không khớp.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit mt-3" [disabled]="isLoading">
+          <span *ngIf="isLoading" class="spinner"></span>
+          <span *ngIf="!isLoading">Đăng ký tài khoản</span>
+        </button>
+
+        <div class="register-link">
+          Đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
