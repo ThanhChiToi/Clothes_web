@@ -1,7 +1,7 @@
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ToastService } from '../../../shared/service/toast.service';
+import { ToastService } from '../../../../shared/service/toast.service';
 
 @Component({
   selector: 'app-toast-container',
